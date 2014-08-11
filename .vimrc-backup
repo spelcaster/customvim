@@ -1,0 +1,301 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" Estrutura do documento baseando-se no modelo criado por Luís Fernando
+" Carvalho Cavalheiro (pessoal at profcavalheiro dot com), disponível em
+" http://www.vivaolinux.com.br/etc/vimrc-2
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" This file is free software configuration code: you can redistribute it
+" and/or modify it under the terms of the GNU General Public License as
+" published by the Free Software Foundation, version 3..
+"
+" This configuration is distributed in the hope that it will be useful,
+" but WITHOUT ANY WARRANTY; without even the implied warranty of
+" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+" GNU General Public License for more details.
+"
+" You should have received a copy of the GNU General Public License
+" along with this configure rile.  If not, see <http://www.gnu.org/licenses/>.
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin}
+"	1) Definição de funções auxiliares
+"	2) Configurações gerais
+"	3) Interface do vim
+"	4) Cores e fontes
+"	5) Textos e tabulações
+"	6) Linha de status
+"	7) Desfazer persistente
+"	8) Carrega o plugins
+"	9) Configurações específicas para HTML
+"	10) Mapeamento de teclas
+""""""""""""""		~/.vimrc índice		"""""""""""""""""""""""
+
+""""""""""  0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin} """
+
+" Utiliza o pathogen para modificar facilmente o caminho em tempo de
+" execução para incluir todos os plugins no diretório ~/.vim/bundle 
+call pathogen#helptags()
+call pathogen#infect()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	1) Definição de funções auxiliares	"""""""""""""""
+
+" Retorna verdadeiro se o modo de copiar e colar estiver ativado
+function! HasPaste()
+	if &paste
+		return 'PASTE MODE ON '
+	en
+		return 'PASTE MODE OFF '
+	return ''
+endfunction
+
+" Quebra uma linha respeitando os limites
+function SplitToLines() range
+    for lnum in range(a:lastline, a:firstline, -1)
+        let words = split(getline(lnum))
+        execute lnum . "delete"
+        call append(lnum-1, words)
+    endfor
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	2) Configurações gerais			"""""""""""""""
+
+" Usa as definições do vim, não as do vi
+set nocompatible
+
+" Desativa o backup e swapfile, encoranjando o usuário a utilizar técnicas
+" atuais como Git e SVN para armazenamento do código
+set nobackup
+set noswapfile
+
+" Esconde o buffers ativos ao invés de fechá-los, permite que você tenha
+" alterações não salvas em um arquivo e abrir um novo arquivo sem ser 
+" forçado a salvar ou desfazer alterações antes
+set hidden
+
+" Define o tamanho do histórico de comandos do vim:
+set history=1000
+
+" Altera q quantidade de desfazer permitido
+set undolevels=1000
+
+"Habilita o reconhecimento de arquivos
+filetype plugin on
+filetype indent on
+
+" Recarrega o arquivo caso ele seja editado por um programa externo,
+" enquanto aberto
+set autoread
+
+" Habilita o uso do mouse no vim para cliques e coisas do tipo
+set mouse=a
+
+" Altera o mapleader de '\' para ','
+let mapleader=","
+
+" Enfatizar alguns caracteres de maneira conveniente
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+
+" Alterna teporariamente para "paste mode", evitando identação desnecessária
+" ao colar
+set pastetoggle=<F2>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	3) Interface do vim			"""""""""""""""
+
+" Ativa o menu Wild (ativa o <Ctrl>n e <Ctrl>p para navegar entre as 
+" correspondências da busca)
+set wildmenu
+
+" Ignora arquivos de determinados tipos
+set wildignore=*.swp,*.bak,*.pyc,*.class
+
+" Sempre mostra a posição atual do cursor
+set ruler
+
+" Altura da barra de comandos
+set cmdheight=2
+
+" Configurando a tecla <Backspace> para o que ela deve fazer
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Destaca os resultados da busca
+set hlsearch
+
+" Mostra itens encontrados enquanto digita
+set incsearch
+
+" Habilita expressões regulares
+set magic
+
+" Destaca pares de colchetes ao passar o cursor e congirura o tempo do
+" destaque em décimos de segundo
+set showmatch
+set mat=10
+
+" Ignora case quando procurando
+set ignorecase
+
+" Ignora case se o padrão estiver todo em lowercase, do contrário
+" case-sensitive
+set smartcase
+
+" Altera o título do terminal
+set title
+
+" Remove beep's
+set visualbell
+set noerrorbells
+
+" Configura a coluna e o comprimento do texto para um valor padrão
+set cc=80
+
+" Marca as colunas excedentes com uma cor padrão
+"let &colorcolumn=join(range(81,999), ",")
+"highlight ColorColumn ctermbg=235 guibg=#ffa4a4
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	4) Cores e fontes			"""""""""""""""
+
+" Ativa a numeração das linhas
+set number
+
+" Pode ser necessário alterar a variável TERM para xterm-256color
+" Altera a quantidade de cores suportadas pelo terminal
+set t_Co=256
+
+" Esquema decores do vim
+if &t_Co >= 256 || has("gui_running")
+    colorscheme mustang
+endif
+
+" Habilita o destaque de sintaxe quando houver cor no terminal
+if &t_Co > 2 || has("gui_running")
+    syntax on
+endif
+
+" Desativa a quebra de linha automática
+set nolinebreak
+
+" Permite a navegação dentro de uma mesma linha longa com j e k
+set wrap
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""	5) Textos e tabulações			"""""""""""""""
+
+" Insere espaços no lugar de caracteres de tabulação
+set expandtab
+
+" Uso inteligente de tabulações
+set smarttab
+
+" Define uma tabulação com uma quantidade definida de espaços
+set shiftwidth=4
+set tabstop=4
+
+" Usa múltiplos de shiftwidth quando identando com '<' e '>'
+set shiftround
+
+" Auto identar
+set autoindent
+
+" Copia a identação anterior em auto-identar
+set copyindent
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	6) Linha de status			"""""""""""""""
+
+" Sempre mostra a linha de status
+set laststatus=2
+
+" Formato da linha de status
+set statusline=\%{HasPaste()}\Arquivo:\%F%m%r%h\%w\ \ Diretório\ de\ trabalho:\ %r%{getcwd()}%h\ \ Linha:\ %l\ -\ Coluna:\ %c
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	7) Desfazer persistente			"""""""""""""""
+
+" Preserva o histórico do desfazer após o fim da sessão atual salvando-o
+" em um arquivo
+set undodir=~/.vim/undobackups
+set undofile
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	8) Carrega o plugins	"""""""""""""""
+
+" Se existir, carrega o plugin de abreviaturas
+" 
+" COMO FUNCIONA:
+" O plugin ~/.vim/plugin/abbreviations.vim funciona como um meta-carregador
+" de abreviaturas. Ele não carregará as abreviaturas, mas criará abreviaturas
+" no modo de comando que permitirão carregar os conjuntos definidos de
+" abreviaturas.
+if filereadable( expand("~/.vim/plugin/abbreviations.vim") )
+	source ~/.vim/plugin/abbreviations.vim
+endif
+
+" Carrega o plugin vim-togglemouse.vim
+if filereadable( expand("~/.vim/plugin/vim-togglemouse.vim") )
+    source ~/.vim/plugin/vim-togglemouse.vim
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	9) Configurações específicas do HTML 	"""""""""""""""
+
+" Desativando tab's de listchars para arquivos xml/html
+autocmd filetype html,xml set listchars-=tab:>.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""	10) Mapeamento de teclas 	"""""""""""""""
+
+" Edita e recarrega o arquivo vimrc rapidamente
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Atalho para shift + ;
+nnoremap ; :
+
+" Força o usuário a utilizar a navegação através de [hjkl]
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Altera o comportamento de navegação entre as linhas
+nnoremap j gj
+nnoremap k gk
+
+" Configura navegação entre split como: <ctrl> + <[hjkl]>
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" Ativa a funcionalidade inverse tab (<Shift> + <Tab>)
+nmap <S-Tab> <<
+imap <S-Tab> <Esc><<i
+
+" Usando <Q> para formatar o parágrafo atual ou seleção
+vmap Q gq
+nmap Q gqap
+
+" Limpando buscas anteriores
+nmap <silent> ,/ :nohlsearch<CR>
+
+cmap w!! w !sudo tee % >/dev/null
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
