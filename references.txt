@@ -1,0 +1,6 @@
+http://amix.dk/vim/vimrc.html
+http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
+http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_%28Part_1%29
+http://codeimpossible.com/2012/04/02/Trailing-whitespace-is-evil-Don-t-commit-evil-into-your-repo-/
+https://gist.github.com/eduardocereto/3088543
+

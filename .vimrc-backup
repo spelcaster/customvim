@@ -1,10 +1,10 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Estrutura do documento baseando-se no modelo criado por Luís Fernando
 " Carvalho Cavalheiro (pessoal at profcavalheiro dot com), disponível em
 " http://www.vivaolinux.com.br/etc/vimrc-2
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " This file is free software configuration code: you can redistribute it
 " and/or modify it under the terms of the GNU General Public License as
@@ -18,30 +18,35 @@
 " You should have received a copy of the GNU General Public License
 " along with this configure rile.  If not, see <http://www.gnu.org/licenses/>.
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin}
-"	1) Definição de funções auxiliares
-"	2) Configurações gerais
-"	3) Interface do vim
-"	4) Cores e fontes
-"	5) Textos e tabulações
-"	6) Linha de status
-"	7) Desfazer persistente
-"	8) Carrega o plugins
-"	9) Configurações específicas para HTML
-"	10) Mapeamento de teclas
-""""""""""""""		~/.vimrc índice		"""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin} """
+"""""""""    ~/.vimrc índice     """"""""""""""""""""""""""""""""""""""""""""""
+"
+"   0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin}
+"   1) Definição de funções auxiliares
+"   2) Configurações gerais
+"   3) Interface do vim
+"   4) Cores e fontes
+"   5) Textos e tabulações
+"   6) Linha de status
+"   7) Desfazer persistente
+"   8) Carrega o plugins
+"   9) Configurações específicas para HTML
+"   10) Mapeamento de teclas
+"   11) Outras configurações
+"
+"""""""""""""""""""""""      ~/.vimrc índice     """"""""""""""""""""""""""""""
+
+"""""""""  0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin} """""""""""
 
 " Utiliza o pathogen para modificar facilmente o caminho em tempo de
 " execução para incluir todos os plugins no diretório ~/.vim/bundle 
 call pathogen#helptags()
 call pathogen#infect()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""	1) Definição de funções auxiliares	"""""""""""""""
+""""""""""  1) Definição de funções auxiliares  """""""""""""""""""""""""""""""
 
 " Retorna verdadeiro se o modo de copiar e colar estiver ativado
 function! HasPaste()
@@ -52,18 +57,45 @@ function! HasPaste()
 	return ''
 endfunction
 
-" Quebra uma linha respeitando os limites
-function SplitToLines() range
-    for lnum in range(a:lastline, a:firstline, -1)
-        let words = split(getline(lnum))
-        execute lnum . "delete"
-        call append(lnum-1, words)
-    endfor
+" Abre URL no browse
+function! Browser()
+    let line = getline(".")
+    let line = matchstr(line, "http[^   ]*")
+    exec "!firefox ".line
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rotação de temas
+let themeindex = 0
+function! RotateColorTheme()
+    let y = -1
+    while y == -1
+        let colorstring ="candy#github#inkpot#mustang#codeschool#grb256#metacosm#"
+        let x = match(colorstring, "#", g:themeindex)
+        let y = match(colorstring, "#", x+1)
+        let g:themeindex = x + 1
+        if y == -1
+            let g:themeindex = 0
+        else
+            let themestring = strpart(colorstring, x + 1, y - x -1)
+            return ":colorscheme ".themestring
+        endif
+    endwhile
+endfunction
 
-""""""""""	2) Configurações gerais			"""""""""""""""
+" Modo TodoList
+function! TodoListMode()
+    e ~/.todo.otl
+    Calendar
+    wincmd l
+    set foldlevel=1
+    tabnew ~/.notes.txt
+    tabfirst
+    " ou 'norm! zMzr'
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""  2) Configurações gerais """""""""""""""""""""""""""""""""""""""""""
 
 " Usa as definições do vim, não as do vi
 set nocompatible
@@ -72,11 +104,16 @@ set nocompatible
 " atuais como Git e SVN para armazenamento do código
 set nobackup
 set noswapfile
+set nowb
 
 " Esconde o buffers ativos ao invés de fechá-los, permite que você tenha
 " alterações não salvas em um arquivo e abrir um novo arquivo sem ser 
 " forçado a salvar ou desfazer alterações antes
 set hidden
+
+" Configura a codificação de caracteres e o idioma
+set encoding=utf8
+language en_US
 
 " Define o tamanho do histórico de comandos do vim:
 set history=1000
@@ -84,9 +121,11 @@ set history=1000
 " Altera q quantidade de desfazer permitido
 set undolevels=1000
 
-"Habilita o reconhecimento de arquivos
+" Habilita o reconhecimento de arquivos
+filetype on
 filetype plugin on
 filetype indent on
+set grepprg=grep\ -nH\ $*
 
 " Recarrega o arquivo caso ele seja editado por um programa externo,
 " enquanto aberto
@@ -97,28 +136,41 @@ set mouse=a
 
 " Altera o mapleader de '\' para ','
 let mapleader=","
+let g:mapleader=","
 
 " Enfatizar alguns caracteres de maneira conveniente
 set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=tab:>.,trail:.,extends:#,nbsp:.,precedes:<,extends:>
 
 " Alterna teporariamente para "paste mode", evitando identação desnecessária
 " ao colar
 set pastetoggle=<F2>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Testes
+set completeopt=longest,menuone,preview
 
-""""""""""	3) Interface do vim			"""""""""""""""
+" Não executa redraw quando estiver executando macros
+set nolazyredraw
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""  3) Interface do vim """""""""""""""""""""""""""""""""""""""""""""""
 
 " Ativa o menu Wild (ativa o <Ctrl>n e <Ctrl>p para navegar entre as 
 " correspondências da busca)
 set wildmenu
+
+" <Tab> percorre todas as opções disponíveis
+set wildmode=list:longest,full
 
 " Ignora arquivos de determinados tipos
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " Sempre mostra a posição atual do cursor
 set ruler
+
+" Mostra a barra de comandos
+set showcmd
 
 " Altura da barra de comandos
 set cmdheight=2
@@ -154,28 +206,44 @@ set title
 " Remove beep's
 set visualbell
 set noerrorbells
+set tm=500
 
-" Configura a coluna e o comprimento do texto para um valor padrão
+" Remove os blinks na tela
+set vb t_vb=
+
+" Faz uma margem no editor (colorcolumn)
 set cc=80
 
 " Marca as colunas excedentes com uma cor padrão
 "let &colorcolumn=join(range(81,999), ",")
 "highlight ColorColumn ctermbg=235 guibg=#ffa4a4
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Utiliza o inglês para checagem de ortografia, mas não a realiza como padrão
+if version >= 700
+    set spl=en spell
+    set nospell
+endif
 
-""""""""""	4) Cores e fontes			"""""""""""""""
+" set foldmethod=marker
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""  4) Cores e fontes   """""""""""""""""""""""""""""""""""""""""""""""
 
 " Ativa a numeração das linhas
 set number
 
 " Pode ser necessário alterar a variável TERM para xterm-256color
-" Altera a quantidade de cores suportadas pelo terminal
-set t_Co=256
-
 " Esquema decores do vim
 if &t_Co >= 256 || has("gui_running")
-    colorscheme mustang
+    " Configura o tema
+    colorscheme inkpot
+
+    " Remove barra de ferramentas
+    set guioptions-=T
+    
+    " Configura a fonte
+    set guifont=Terminus\ 9
 endif
 
 " Habilita o destaque de sintaxe quando houver cor no terminal
@@ -189,9 +257,9 @@ set nolinebreak
 " Permite a navegação dentro de uma mesma linha longa com j e k
 set wrap
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""	5) Textos e tabulações			"""""""""""""""
+""""""""""  5) Textos e tabulações  """""""""""""""""""""""""""""""""""""""""""
 
 " Insere espaços no lugar de caracteres de tabulação
 set expandtab
@@ -212,28 +280,28 @@ set autoindent
 " Copia a identação anterior em auto-identar
 set copyindent
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""	6) Linha de status			"""""""""""""""
+""""""""""  6) Linha de status  """""""""""""""""""""""""""""""""""""""""""""""
 
 " Sempre mostra a linha de status
 set laststatus=2
 
 " Formato da linha de status
-set statusline=\%{HasPaste()}\Arquivo:\%F%m%r%h\%w\ \ Diretório\ de\ trabalho:\ %r%{getcwd()}%h\ \ Linha:\ %l\ -\ Coluna:\ %c
+set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""	7) Desfazer persistente			"""""""""""""""
+""""""""""  7) Desfazer persistente """""""""""""""""""""""""""""""""""""""""""
 
 " Preserva o histórico do desfazer após o fim da sessão atual salvando-o
 " em um arquivo
 set undodir=~/.vim/undobackups
 set undofile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""	8) Carrega o plugins	"""""""""""""""
+""""""""""  8) Carrega o plugins    """""""""""""""""""""""""""""""""""""""""""
 
 " Se existir, carrega o plugin de abreviaturas
 " 
@@ -251,22 +319,22 @@ if filereadable( expand("~/.vim/plugin/vim-togglemouse.vim") )
     source ~/.vim/plugin/vim-togglemouse.vim
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""	9) Configurações específicas do HTML 	"""""""""""""""
+""""""""""  9) Configurações específicas do HTML    """""""""""""""""""""""""""
 
 " Desativando tab's de listchars para arquivos xml/html
 autocmd filetype html,xml set listchars-=tab:>.
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""	10) Mapeamento de teclas 	"""""""""""""""
+""""""""""  10) Mapeamento de teclas    """""""""""""""""""""""""""""""""""""""
 
 " Edita e recarrega o arquivo vimrc rapidamente
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Atalho para shift + ;
+" Troca ; e :
 nnoremap ; :
 
 " Força o usuário a utilizar a navegação através de [hjkl]
@@ -274,6 +342,36 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+" Chama a função browser na linha ,w
+map <leader>o :call Browser()<CR>
+
+" Abre o plugin Project ,pal
+nnoremap <silent> <leader>pal :Project .vimproject<CR>
+
+" TODO Mode
+nnoremap <silent> <leader>todo :execute TodoListMode()<CR>
+
+" Abre o plugin TagList
+nnoremap <silent> <F3> :Tlist<CR>
+
+" Próxima aba
+nnoremap <silent> <C-Right> :tabnext<CR>
+
+" Aba anterior
+nnoremap <silent> <C-Left> :tabprevious<CR>
+
+" Nova aba
+nnoremap <silent> <C-t> :tabnew<CR>
+
+" Fechar aba atual
+nnoremap <silent> <C-x> :tabclose<CR>
+
+" Troca o esquema de cores utilizando a função RotateColorTheme()
+nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
+
+" Toggle no diretório
+nnoremap <space> za
 
 " Altera o comportamento de navegação entre as linhas
 nnoremap j gj
@@ -296,6 +394,25 @@ nmap Q gqap
 " Limpando buscas anteriores
 nmap <silent> ,/ :nohlsearch<CR>
 
+" Salva arquivos como sudo
 cmap w!! w !sudo tee % >/dev/null
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cria nova linha e continua no modo Normal
+nnoremap <silent> zj o<Esc>
+nnoremap <silent> zk O<Esc>
+
+" Foca o próximo item na busca
+map N Nzz
+map n nzz
+
+" Salva alterações sem fechar o arquivo
+map <leader>w :w!<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""  11) Outras configurações    """""""""""""""""""""""""""""""""""""""
+
+" Utiliza o compilador gcc como padrão
+compiler gcc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
