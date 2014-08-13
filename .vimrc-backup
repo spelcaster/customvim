@@ -389,18 +389,26 @@ map n nzz
 " Salva alterações sem fechar o arquivo
 map <leader>s :w!<CR>
 
+" CD no diretório atual
+map <leader>%% :cd %:p:h<CR>:pwd<CR>
+
+" Abre o edit a partir do diretório atual
+map <leader>v :e <C-R>=expand("%:p:h") . "/"<CR>
+
+" Abre as tags geradas por ctag com o plugin Ctrlp
+nnoremap <leader>t :CtrlPTag<cr>
+
+" Ativa/desativa checagem gramatical
+map <leader>ss :set spell!<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  11) Outras configurações    """""""""""""""""""""""""""""""""""""""
+""""""""""  10) Outras configurações    """""""""""""""""""""""""""""""""""""""
 
 " Utiliza o compilador gcc como padrão
 compiler gcc
 
-" Configuração do plugin TagList
-let Tlist_Use_Right_Window = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_Inc_WinWidth = 0
+" Configurando o plugin Tagbar
+let g:tagbar_left=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
