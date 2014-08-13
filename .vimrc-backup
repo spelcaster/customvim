@@ -16,31 +16,31 @@
 
 """""""""    ~/.vimrc índice     """"""""""""""""""""""""""""""""""""""""""""""
 "
-"   0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin}
-"   1) Definição de funções auxiliares
-"   2) Configurações gerais
-"   3) Interface do vim
-"   4) Cores e fontes
-"   5) Textos e tabulações
-"   6) Linha de status
-"   7) Desfazer persistente
-"   8) Carrega o plugins
-"   9) Configurações específicas para HTML
+"   00) Carregando plugins em ~/.vim/bundle/{nome-do-plugin}
+"   01) Definição de funções auxiliares
+"   02) Configurações gerais
+"   03) Interface do vim
+"   04) Cores e fontes
+"   05) Textos e tabulações
+"   06) Linha de status
+"   07) Variáveis e padrões
+"   08) Carrega o plugins
+"   09) Configurações específicas para HTML
 "   10) Mapeamento de teclas
 "   11) Outras configurações
 "
 """""""""""""""""""""""      ~/.vimrc índice     """"""""""""""""""""""""""""""
 
-"""""""""  0) Carregando plugins em ~/.vim/bundle/{nome-do-plugin} """""""""""
+"""""""""  00) Carregando plugins em ~/.vim/bundle/{nome-do-plugin} """""""""""
 
 " Utiliza o pathogen para modificar facilmente o caminho em tempo de
-" execução para incluir todos os plugins no diretório ~/.vim/bundle 
+" execução para incluir todos os plugins no diretório ~/.vim/bundle
 call pathogen#helptags()
 call pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  1) Definição de funções auxiliares  """""""""""""""""""""""""""""""
+""""""""""  01) Definição de funções auxiliares  """""""""""""""""""""""""""""""
 
 " Retorna verdadeiro se o modo de copiar e colar estiver ativado
 function! HasPaste()
@@ -88,7 +88,7 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  2) Configurações gerais """""""""""""""""""""""""""""""""""""""""""
+""""""""""  02) Configurações gerais """""""""""""""""""""""""""""""""""""""""""
 
 " Usa as definições do vim, não as do vi
 set nocompatible
@@ -100,7 +100,7 @@ set noswapfile
 set nowb
 
 " Esconde o buffers ativos ao invés de fechá-los, permite que você tenha
-" alterações não salvas em um arquivo e abrir um novo arquivo sem ser 
+" alterações não salvas em um arquivo e abrir um novo arquivo sem ser
 " forçado a salvar ou desfazer alterações antes
 set hidden
 
@@ -145,11 +145,16 @@ set completeopt=longest,menuone,preview
 " Não executa redraw quando estiver executando macros
 set nolazyredraw
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Preserva o histórico do desfazer após o fim da sessão atual salvando-o
+" em um arquivo
+set undodir=~/.vim/undobackups
+set undofile
 
-""""""""""  3) Interface do vim """""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Ativa o menu Wild (ativa o <Ctrl>n e <Ctrl>p para navegar entre as 
+""""""""""  03) Interface do vim """""""""""""""""""""""""""""""""""""""""""""""
+
+" Ativa o menu Wild (ativa o <Ctrl>n e <Ctrl>p para navegar entre as
 " correspondências da busca)
 set wildmenu
 
@@ -184,7 +189,7 @@ set magic
 " Destaca pares de colchetes ao passar o cursor e congirura o tempo do
 " destaque em décimos de segundo
 set showmatch
-set mat=10
+set mat=2
 
 " Ignora case quando procurando
 set ignorecase
@@ -214,15 +219,16 @@ set cc=80
 " Utiliza o inglês para checagem de ortografia, mas não a realiza como padrão
 if version >= 700
     set spl=en spell
-    set nospell
+    set spell!
 endif
 
 set foldmethod=syntax
+set foldmethod=marker
 set foldlevelstart=99
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  4) Cores e fontes   """""""""""""""""""""""""""""""""""""""""""""""
+""""""""""  04) Cores e fontes   """""""""""""""""""""""""""""""""""""""""""""""
 
 " Ativa a numeração das linhas
 set number
@@ -253,7 +259,7 @@ set wrap
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  5) Textos e tabulações  """""""""""""""""""""""""""""""""""""""""""
+""""""""""  05) Textos e tabulações  """""""""""""""""""""""""""""""""""""""""""
 
 " Insere espaços no lugar de caracteres de tabulação
 set expandtab
@@ -276,7 +282,7 @@ set copyindent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  6) Linha de status  """""""""""""""""""""""""""""""""""""""""""""""
+""""""""""  06) Linha de status  """""""""""""""""""""""""""""""""""""""""""""""
 
 " Sempre mostra a linha de status
 set laststatus=2
@@ -286,27 +292,55 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  7) Desfazer persistente """""""""""""""""""""""""""""""""""""""""""
+""""""""""  07) Variáveis e padrões """""""""""""""""""""""""""""""""""""""""""
 
-" Preserva o histórico do desfazer após o fim da sessão atual salvando-o
-" em um arquivo
-set undodir=~/.vim/undobackups
-set undofile
+" Abreviação para expandir o diretório atual
+cabbr <expr> %% expand('%:p:h')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  8) Carrega o plugins    """""""""""""""""""""""""""""""""""""""""""
+""""""""""  08) Configurações automáticas   """""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Altera o diretório para aonde está o arquivo
+autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 
-""""""""""  9) Configurações específicas do HTML    """""""""""""""""""""""""""
+" Remove espaços indesejados
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+
+" Restaura a posição do cursor anterior
+augroup JumpCursorOnEdit
+    au!
+    autocmd BufReadPost *
+                \ if expand("<afile>:p:h") !=? $TEMP |
+                \   if line("'\"") > 1 && line("'\"") <= line("$") |
+                \       let JumpCursorOnEdit_foo = line("'\"") |
+                \       let b:doopenfold = 1 |
+                \       if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo -1)) |
+                \           let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
+                \           let b:doopenfold = 2 |
+                \       endif |
+                \       exe JumpCursorOnEdit_foo |
+                \   endif
+                \ endif
+    autocmd BufWinEnter *
+                \ if exists("b:doopenfold") |
+                \   exe "normal zv" |
+                \   if (b:doopenfold > 1) |
+                \       exe "+".1 |
+                \   endif |
+                \   unlet b:doopenfold |
+                \ endif
+augroup END
 
 " Desativando tab's de listchars para arquivos xml/html
 autocmd filetype html,xml set listchars-=tab:>.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""  10) Mapeamento de teclas    """""""""""""""""""""""""""""""""""""""
+""""""""""  09) Mapeamento de teclas    """""""""""""""""""""""""""""""""""""""
+
+" Home vai para o primeiro caracter não branco na linha
+map <Home><Home> ^
 
 " Edita e recarrega o arquivo vimrc rapidamente
 nmap <silent> <leader>ev :tabnew<CR>:e $MYVIMRC<CR>
@@ -322,7 +356,8 @@ map <left> <nop>
 map <right> <nop>
 
 " Remove incompatilidade de caracteres do DOS
-nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
+"nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
+nnoremap <leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
 " Chama a função browser na linha ,w
 map <leader>l :call Browser()<CR>
@@ -335,6 +370,9 @@ nnoremap <silent> <leader>todo :execute TodoListMode()<CR>
 
 " Abre o plugin TagList
 nnoremap <silent> <F3> :Tlist<CR>
+
+" Abre o plugin Tagbar
+nnoremap <silent> <F4> :TagbarToggle<CR>
 
 " Próxima aba
 nnoremap <silent> <C-Right> :tabnext<CR>
