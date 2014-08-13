@@ -76,3 +76,4 @@ hi htmlBoldUnderlineItalic  gui=BOLD,UNDERLINE,ITALIC
 hi htmlItalic               gui=ITALIC
 hi htmlUnderline            gui=UNDERLINE
 hi htmlUnderlineItalic      gui=UNDERLINE,ITALIC
+

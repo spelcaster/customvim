@@ -1,11 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Estrutura do documento baseando-se no modelo criado por Luís Fernando
-" Carvalho Cavalheiro (pessoal at profcavalheiro dot com), disponível em
-" http://www.vivaolinux.com.br/etc/vimrc-2
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 " This file is free software configuration code: you can redistribute it
 " and/or modify it under the terms of the GNU General Public License as
 " published by the Free Software Foundation, version 3..
@@ -50,11 +44,10 @@ call pathogen#infect()
 
 " Retorna verdadeiro se o modo de copiar e colar estiver ativado
 function! HasPaste()
-	if &paste
-		return 'PASTE MODE ON '
-	en
-		return 'PASTE MODE OFF '
-	return ''
+    if &paste
+        return 'PASTE MODE ON'
+    endif
+    return 'PASTE MODE OFF'
 endfunction
 
 " Abre URL no browse
@@ -69,7 +62,7 @@ let themeindex = 0
 function! RotateColorTheme()
     let y = -1
     while y == -1
-        let colorstring ="candy#github#inkpot#mustang#codeschool#grb256#metacosm#"
+        let colorstring ="candy#github#inkpot#mustang#codeschool#grb256#metacosm#molokai#"
         let x = match(colorstring, "#", g:themeindex)
         let y = match(colorstring, "#", x+1)
         let g:themeindex = x + 1
@@ -113,7 +106,7 @@ set hidden
 
 " Configura a codificação de caracteres e o idioma
 set encoding=utf8
-language en_US
+"language en_US
 
 " Define o tamanho do histórico de comandos do vim:
 set history=1000
@@ -224,7 +217,8 @@ if version >= 700
     set nospell
 endif
 
-" set foldmethod=marker
+set foldmethod=syntax
+set foldlevelstart=99
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -233,17 +227,17 @@ endif
 " Ativa a numeração das linhas
 set number
 
+" Configura o número de cores do terminal para 256
+set t_Co=256
+
 " Pode ser necessário alterar a variável TERM para xterm-256color
 " Esquema decores do vim
 if &t_Co >= 256 || has("gui_running")
     " Configura o tema
-    colorscheme inkpot
+    colorscheme candy
 
     " Remove barra de ferramentas
     set guioptions-=T
-    
-    " Configura a fonte
-    set guifont=Terminus\ 9
 endif
 
 " Habilita o destaque de sintaxe quando houver cor no terminal
@@ -303,22 +297,6 @@ set undofile
 
 """"""""""  8) Carrega o plugins    """""""""""""""""""""""""""""""""""""""""""
 
-" Se existir, carrega o plugin de abreviaturas
-" 
-" COMO FUNCIONA:
-" O plugin ~/.vim/plugin/abbreviations.vim funciona como um meta-carregador
-" de abreviaturas. Ele não carregará as abreviaturas, mas criará abreviaturas
-" no modo de comando que permitirão carregar os conjuntos definidos de
-" abreviaturas.
-if filereadable( expand("~/.vim/plugin/abbreviations.vim") )
-	source ~/.vim/plugin/abbreviations.vim
-endif
-
-" Carrega o plugin vim-togglemouse.vim
-if filereadable( expand("~/.vim/plugin/vim-togglemouse.vim") )
-    source ~/.vim/plugin/vim-togglemouse.vim
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""  9) Configurações específicas do HTML    """""""""""""""""""""""""""
@@ -331,8 +309,8 @@ autocmd filetype html,xml set listchars-=tab:>.
 """"""""""  10) Mapeamento de teclas    """""""""""""""""""""""""""""""""""""""
 
 " Edita e recarrega o arquivo vimrc rapidamente
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>ev :tabnew<CR>:e $MYVIMRC<CR>
+nmap <silent> <leader>sv :tabnew<CR>:so $MYVIMRC<CR>
 
 " Troca ; e :
 nnoremap ; :
@@ -343,8 +321,11 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
+" Remove incompatilidade de caracteres do DOS
+nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
+
 " Chama a função browser na linha ,w
-map <leader>o :call Browser()<CR>
+map <leader>l :call Browser()<CR>
 
 " Abre o plugin Project ,pal
 nnoremap <silent> <leader>pal :Project .vimproject<CR>
@@ -406,7 +387,7 @@ map N Nzz
 map n nzz
 
 " Salva alterações sem fechar o arquivo
-map <leader>w :w!<CR>
+map <leader>s :w!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -414,5 +395,12 @@ map <leader>w :w!<CR>
 
 " Utiliza o compilador gcc como padrão
 compiler gcc
+
+" Configuração do plugin TagList
+let Tlist_Use_Right_Window = 1
+let Tlist_Enable_Fold_Column = 0
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_SingleClick = 1
+let Tlist_Inc_WinWidth = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
