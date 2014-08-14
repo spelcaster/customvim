@@ -86,6 +86,19 @@ function! TodoListMode()
     " ou 'norm! zMzr'
 endfunction
 
+" Configura atalhos para o netrw
+function! FixNetrwMapping()
+    " Enter abre o arquivo do lado direito do vim em uma tela tipo :vsplit
+    let g:netrw_browse_split = 4
+    let g:netrw_altv = 1
+
+    " Altera o diretório para o buffer atual quando abrir arquivos
+    set autochdir
+
+    " Volta para o diretório anterior
+    noremap <C-BS> <Esc>'.<CR>
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""  02) Configurações gerais """""""""""""""""""""""""""""""""""""""""""
@@ -335,6 +348,11 @@ augroup END
 " Desativando tab's de listchars para arquivos xml/html
 autocmd filetype html,xml set listchars-=tab:>.
 
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call FixNetrwMapping()
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""  09) Mapeamento de teclas    """""""""""""""""""""""""""""""""""""""
@@ -354,6 +372,9 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+" Anula Ctrl+z
+nmap <silent> <c-z> <nop>
 
 " Remove incompatilidade de caracteres do DOS
 "nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
@@ -438,6 +459,9 @@ nnoremap <leader>t :CtrlPTag<cr>
 
 " Ativa/desativa checagem gramatical
 map <leader>ss :set spell!<CR>
+
+" Seleciona todo o texto
+map <C-a> <esc>ggVG<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
