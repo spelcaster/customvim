@@ -463,6 +463,9 @@ map <leader>ss :set spell!<CR>
 " Seleciona todo o texto
 map <C-a> <esc>ggVG<CR>
 
+" Aplica auto-formatação (plugin: autoformat.vim)
+map <leader>f :Autoformat<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""  10) Outras configurações    """""""""""""""""""""""""""""""""""""""
