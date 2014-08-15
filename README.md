@@ -24,3 +24,23 @@ fugitive: http://www.vim.org/scripts/script.php?script_id=2975
 tagbar: https://github.com/majutsushi/tagbar
 
 easymotion: http://www.vim.org/scripts/script.php?script_id=3526
+
+Clonando plugins do Git:
+
+# tcomment_vim:
+git clone https://github.com/tomtom/tcomment_vim.git ~/.vim/bundle/tcomment_vim
+
+# snipmate - dependências
+git clone https://github.com/tomtom/tlib_vim.git ~/.vim/bundle/tlib_vim
+
+git clone https://github.com/MarcWeber/vim-addon-mw-utils.git ~/.vim/bundle/vim-addon-mw-utils
+
+# snipmate - plugin
+git clone https://github.com/garbas/vim-snipmate.git ~/.vim/bundle/im-snipmate
+
+# snipmate - opcional
+git clone https://github.com/honza/vim-snippets.git ~/.vim/bundle/vim-snippets
+
+# YouCompleteMe
+git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+
