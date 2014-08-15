@@ -1,0 +1,13 @@
+" Sequência
+" Descrição
+
+# Window:
+<Ctrl>+w <Ctrl>+r
+Altera o posicionamento das janelas
+
+<Ctrl>+w <Shift>+h
+<Ctrl>+w <Shift>+j
+<Ctrl>+w <Shift>+k
+<Ctrl>+w <Shift>+l
+Alterna entre modo horizontal e vertical, a funcionalidade destes atalhos depende
+de como as janelas estão posicionadas em tela
