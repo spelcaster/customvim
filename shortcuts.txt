@@ -1,7 +1,7 @@
 " Sequência
 " Descrição
 
-# Window:
+Window:
 <Ctrl>+w <Ctrl>+r
 Altera o posicionamento das janelas
 
