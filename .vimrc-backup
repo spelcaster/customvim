@@ -87,16 +87,19 @@ function! TodoListMode()
 endfunction
 
 " Configura atalhos para o netrw
+let netrw_loaded="not loaded"
 function! FixNetrwMapping()
     " Enter abre o arquivo do lado direito do vim em uma tela tipo :vsplit
     let g:netrw_browse_split = 4
     let g:netrw_altv = 1
+    let g:netrw_liststyle=3
 
-    " Altera o diretório para o buffer atual quando abrir arquivos
-    set autochdir
+    let netrw_loaded="loaded"
 
     " Volta para o diretório anterior
     noremap <C-BS> <Esc>'.<CR>
+
+    return ':set filetype?'
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,6 +165,13 @@ set nolazyredraw
 " em um arquivo
 set undodir=~/.vim/undobackups
 set undofile
+
+" Usa o clipboard do sistema
+set clipboard=unnamed
+
+if has('unnamedplus')
+    set clipboard+=unnamedplus
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -462,9 +472,6 @@ map <leader>ss :set spell!<CR>
 
 " Seleciona todo o texto
 map <C-a> <esc>ggVG<CR>
-
-" Aplica auto-formatação (plugin: autoformat.vim)
-map <leader>f :Autoformat<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
