@@ -86,22 +86,6 @@ function! TodoListMode()
     " ou 'norm! zMzr'
 endfunction
 
-" Configura atalhos para o netrw
-let netrw_loaded="not loaded"
-function! FixNetrwMapping()
-    " Enter abre o arquivo do lado direito do vim em uma tela tipo :vsplit
-    let g:netrw_browse_split = 4
-    let g:netrw_altv = 1
-    let g:netrw_liststyle=3
-
-    let netrw_loaded="loaded"
-
-    " Volta para o diretório anterior
-    noremap <C-BS> <Esc>'.<CR>
-
-    return ':set filetype?'
-endfunction
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""  02) Configurações gerais """""""""""""""""""""""""""""""""""""""""""
@@ -170,7 +154,7 @@ set undofile
 set clipboard=unnamed
 
 if has('unnamedplus')
-    set clipboard+=unnamedplus
+    set clipboard=unnamedplus
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -358,11 +342,6 @@ augroup END
 " Desativando tab's de listchars para arquivos xml/html
 autocmd filetype html,xml set listchars-=tab:>.
 
-augroup netrw_mapping
-    autocmd!
-    autocmd filetype netrw call FixNetrwMapping()
-augroup END
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""  09) Mapeamento de teclas    """""""""""""""""""""""""""""""""""""""
@@ -473,14 +452,31 @@ map <leader>ss :set spell!<CR>
 " Seleciona todo o texto
 map <C-a> <esc>ggVG<CR>
 
+" Atalho para copiar
+" clipboard do botão do meio no mouse
+"vnoremap <C-c> "*y
+" clipboard padrão
+vnoremap <C-c> "+y
+
+" Abre a definição da tag em uma nova aba
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Abre a definição da tag em vertical split
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""  10) Outras configurações    """""""""""""""""""""""""""""""""""""""
 
 " Utiliza o compilador gcc como padrão
-compiler gcc
+compiler clang
 
 " Configurando o plugin Tagbar
 let g:tagbar_left=1
+
+" Enter abre o arquivo do lado direito do vim em uma tela tipo :vsplit
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
