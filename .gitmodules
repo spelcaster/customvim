@@ -52,3 +52,6 @@
 [submodule "bundle/alternate"]
 	path = bundle/alternate
 	url = https://github.com/vim-scripts/a.vim.git
+[submodule "bundle/nerdtree-git"]
+	path = bundle/nerdtree-git
+	url = git@github.com:Xuyuanp/nerdtree-git-plugin.git
