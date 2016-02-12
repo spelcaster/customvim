@@ -55,3 +55,6 @@
 [submodule "bundle/nerdtree-git"]
 	path = bundle/nerdtree-git
 	url = git@github.com:Xuyuanp/nerdtree-git-plugin.git
+[submodule "bundle/nerdtree-tabs"]
+	path = bundle/nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git
