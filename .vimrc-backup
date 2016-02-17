@@ -14,469 +14,396 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""    ~/.vimrc índice     """"""""""""""""""""""""""""""""""""""""""""""
-"
-"   00) Carregando plugins em ~/.vim/bundle/{nome-do-plugin}
-"   01) Definição de funções auxiliares
-"   02) Configurações gerais
-"   03) Interface do vim
-"   04) Cores e fontes
-"   05) Textos e tabulações
-"   06) Linha de status
-"   07) Variáveis e padrões
-"   08) Carrega o plugins
-"   09) Configurações específicas para HTML
-"   10) Mapeamento de teclas
-"   11) Outras configurações
-"
-"""""""""""""""""""""""      ~/.vimrc índice     """"""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   > Autoload plugins in ~/.vim/bundle
+"   > General setup
+"   > Interface setup
+"   > Colors and fonts
+"   > Text format setup
+"   > Editor status
+"   > Command line abbreviations
+"   > Automatic commands
+"   > Keymaps
+"   > Other setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""  00) Carregando plugins em ~/.vim/bundle/{nome-do-plugin} """""""""""
-
-" Utiliza o pathogen para modificar facilmente o caminho em tempo de
-" execução para incluir todos os plugins no diretório ~/.vim/bundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" > Autoload plugins in ~/.vim/bundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call pathogen#helptags()
 call pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  01) Definição de funções auxiliares  """""""""""""""""""""""""""""""
-
-" Retorna verdadeiro se o modo de copiar e colar estiver ativado
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE ON'
-    endif
-    return 'PASTE MODE OFF'
-endfunction
-
-" Abre URL no browse
-function! Browser()
-    let line = getline(".")
-    let line = matchstr(line, "http[^   ]*")
-    exec "!firefox ".line
-endfunction
-
-" Rotação de temas
-let themeindex = 0
-function! RotateColorTheme()
-    let y = -1
-    while y == -1
-        let colorstring ="candy#github#inkpot#mustang#codeschool#grb256#metacosm#molokai#"
-        let x = match(colorstring, "#", g:themeindex)
-        let y = match(colorstring, "#", x+1)
-        let g:themeindex = x + 1
-        if y == -1
-            let g:themeindex = 0
-        else
-            let themestring = strpart(colorstring, x + 1, y - x -1)
-            return ":colorscheme ".themestring
-        endif
-    endwhile
-endfunction
-
-" Modo TodoList
-function! TodoListMode()
-    e ~/.todo.otl
-    Calendar
-    wincmd l
-    set foldlevel=1
-    tabnew ~/.notes.txt
-    tabfirst
-    " ou 'norm! zMzr'
-endfunction
-
+" > General setup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  02) Configurações gerais """""""""""""""""""""""""""""""""""""""""""
-
-" Usa as definições do vim, não as do vi
+" Enable Vi Improved
 set nocompatible
 
-" Desativa o backup e swapfile, encoranjando o usuário a utilizar técnicas
-" atuais como Git e SVN para armazenamento do código
+" Set Unix file format
+set ff=unix
+
+" Disable backup and swapfile, encouraging user to use some kind of version
+" control
 set nobackup
 set noswapfile
 set nowb
 
-" Esconde o buffers ativos ao invés de fechá-los, permite que você tenha
-" alterações não salvas em um arquivo e abrir um novo arquivo sem ser
-" forçado a salvar ou desfazer alterações antes
+" Hide buffers instead of closing them, so you won't be annoyed with messages
+" to save the file before you open another one
 set hidden
 
-" Configura a codificação de caracteres e o idioma
+" Set the charset encoding to UTF8
 set encoding=utf8
-"language en_US
 
-" Define o tamanho do histórico de comandos do vim:
+" Set vim's menu language
+set langmenu=en_US.UTF-8
+
+" Define vim history list max length
 set history=1000
 
-" Altera q quantidade de desfazer permitido
+" Define vim's undo stack max length
 set undolevels=1000
 
-" Habilita o reconhecimento de arquivos
+" Filetype setup
 filetype on
 filetype plugin on
 filetype indent on
 set grepprg=grep\ -nH\ $*
 
-" Recarrega o arquivo caso ele seja editado por um programa externo,
-" enquanto aberto
+" Reload file if modifications are found
 set autoread
 
-" Habilita o uso do mouse no vim para cliques e coisas do tipo
-set mouse=a
-
-" Altera o mapleader de '\' para ','
+" Set leader to ','
 let mapleader=","
 let g:mapleader=","
 
-" Enfatizar alguns caracteres de maneira conveniente
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.,precedes:<,extends:>
+" Set localleader to '\\'
+let maplocalleader="\\"
 
-" Alterna teporariamente para "paste mode", evitando identação desnecessária
-" ao colar
+" Show invisible characters
+set list
+set listchars=tab:>-,trail:.,extends:#,nbsp:.,precedes:«,extends:»
+"set listchars+=eol:¶
+
+" Toggle paste mode in insert mode
 set pastetoggle=<F2>
 
-" Testes
+" Change completion popup menu behavior
 set completeopt=longest,menuone,preview
 
-" Não executa redraw quando estiver executando macros
+" Disable redraw while running macros
 set nolazyredraw
 
-"" Preserva o histórico do desfazer após o fim da sessão atual salvando-o
-" em um arquivo
+" Create a persistent undo history
 set undodir=~/.vim/undobackups
 set undofile
 
-" Usa o clipboard do sistema
+" Use the system clipboard
 set clipboard=unnamed
 
+" Use the X Window clipboard
 if has('unnamedplus')
     set clipboard=unnamedplus
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  03) Interface do vim """""""""""""""""""""""""""""""""""""""""""""""
-
-" Ativa o menu Wild (ativa o <Ctrl>n e <Ctrl>p para navegar entre as
-" correspondências da busca)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" > Interface setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enhances the vim command search
 set wildmenu
 
-" <Tab> percorre todas as opções disponíveis
+" Show a list of matches while searching commands
 set wildmode=list:longest,full
 
-" Ignora arquivos de determinados tipos
-set wildignore=*.swp,*.bak,*.pyc,*.class
+" Ignore files by type
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jx
 
-" Sempre mostra a posição atual do cursor
+" Show cursor position in status line
 set ruler
 
-" Mostra a barra de comandos
+" Show commands
 set showcmd
 
-" Altura da barra de comandos
+" Screen lines for command-line
 set cmdheight=2
 
-" Configurando a tecla <Backspace> para o que ela deve fazer
+" Change the behavior of [Backspace]
 set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
 
-" Destaca os resultados da busca
+" Highlight matches found in search
 set hlsearch
 
-" Mostra itens encontrados enquanto digita
+" Run search for each character typed
 set incsearch
 
-" Habilita expressões regulares
+" Enable regular expression in search
 set magic
 
-" Destaca pares de colchetes ao passar o cursor e congirura o tempo do
-" destaque em décimos de segundo
+" Highlight delimiters like: (), {{}}, (){()()}
 set showmatch
 set mat=2
 
-" Ignora case quando procurando
+" Search with case-insensitive
 set ignorecase
 
-" Ignora case se o padrão estiver todo em lowercase, do contrário
-" case-sensitive
+" Enable smart case search
 set smartcase
 
-" Altera o título do terminal
+" Update terminal title
 set title
 
-" Remove beep's
+" Remove all sound beeps
 set visualbell
 set noerrorbells
 set tm=500
 
-" Remove os blinks na tela
+" Remove visual beep
 set vb t_vb=
 
-" Faz uma margem no editor (colorcolumn)
+" Draw a margin
 set cc=80
 
-" Marca as colunas excedentes com uma cor padrão
-"let &colorcolumn=join(range(81,999), ",")
-"highlight ColorColumn ctermbg=235 guibg=#ffa4a4
-
-" Utiliza o inglês para checagem de ortografia, mas não a realiza como padrão
+" Disable spell check by default and set the spell language to english
 if version >= 700
     set spl=en spell
     set spell!
 endif
 
+" Syntax highlighting items specify folds
 set foldmethod=syntax
+
+" Markers are used to specify folds
 set foldmethod=marker
+
+" No folds closed
 set foldlevelstart=99
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" > Colors and fonts
+" http://vim.wikia.com/wiki/256_colors_in_vim
+" Run check_terminal_colors.py to see if your terminal support the 256 colors
 
-""""""""""  04) Cores e fontes   """""""""""""""""""""""""""""""""""""""""""""""
-
-" Ativa a numeração das linhas
+" Show line numbers
 set number
 
-" Configura o número de cores do terminal para 256
+" Set terminal color to 256
 set t_Co=256
 
-" Pode ser necessário alterar a variável TERM para xterm-256color
-" Esquema decores do vim
+" Disable guioptions and set a default color scheme
 if &t_Co >= 256 || has("gui_running")
-    " Configura o tema
+    " Default theme
     colorscheme candy
 
-    " Remove barra de ferramentas
+    " Remove gui toolbars
     set guioptions-=T
 endif
 
-" Habilita o destaque de sintaxe quando houver cor no terminal
+" Syntax hightlight if the terminal supports more than 2 colors
 if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
-" Desativa a quebra de linha automática
+" Disable virtual line break
 set nolinebreak
 
-" Permite a navegação dentro de uma mesma linha longa com j e k
+" Automatic break files
 set wrap
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  05) Textos e tabulações  """""""""""""""""""""""""""""""""""""""""""
-
-" Insere espaços no lugar de caracteres de tabulação
+" > Text format setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of <Tab>
 set expandtab
 
-" Uso inteligente de tabulações
+" Smart use of <Tab>
 set smarttab
 
-" Define uma tabulação com uma quantidade definida de espaços
+" Define the number of spaces to represent one <Tab>
 set shiftwidth=4
 set tabstop=4
 
-" Usa múltiplos de shiftwidth quando identando com '<' e '>'
+" Round indent with multiples of shiftwidth <C-T> or <C-D> (i), '>' or '<' (n)
 set shiftround
 
-" Auto identar
+" Enable automatic indentation
 set autoindent
 
-" Copia a identação anterior em auto-identar
+" Smart use of indentation
 set copyindent
 
+" Enable C indent style
+set cindent
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" > Editor status
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show the current mode
+set showmode
 
-""""""""""  06) Linha de status  """""""""""""""""""""""""""""""""""""""""""""""
-
-" Sempre mostra a linha de status
+" Always show status line
 set laststatus=2
 
-" Formato da linha de status
-set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+" Format status line
+set statusline=%F
+set statusline+=%m
+set statusline+=%r
+set statusline+=%h
+set statusline+=%w
+set statusline+=\ (%{strlen(&fenc)?&fenc:'none'},\ %{&ff})
+set statusline+={%Y}
+set statusline+=%=
+set statusline+=[%l,%c]
+set statusline+=\ %L\ %P
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  07) Variáveis e padrões """""""""""""""""""""""""""""""""""""""""""
-
-" Abreviação para expandir o diretório atual
+" > Command line abbreviations
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Expand '%%/' to current directory in command line
 cabbr <expr> %% expand('%:p:h')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  08) Configurações automáticas   """""""""""""""""""""""""""""""""""
-
-" Altera o diretório para aonde está o arquivo
-autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
-
-" Remove espaços indesejados
+" > Automatic commands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove trailling spaces
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-" Restaura a posição do cursor anterior
-augroup JumpCursorOnEdit
-    au!
-    autocmd BufReadPost *
-                \ if expand("<afile>:p:h") !=? $TEMP |
-                \   if line("'\"") > 1 && line("'\"") <= line("$") |
-                \       let JumpCursorOnEdit_foo = line("'\"") |
-                \       let b:doopenfold = 1 |
-                \       if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo -1)) |
-                \           let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
-                \           let b:doopenfold = 2 |
-                \       endif |
-                \       exe JumpCursorOnEdit_foo |
-                \   endif
-                \ endif
-    autocmd BufWinEnter *
-                \ if exists("b:doopenfold") |
-                \   exe "normal zv" |
-                \   if (b:doopenfold > 1) |
-                \       exe "+".1 |
-                \   endif |
-                \   unlet b:doopenfold |
-                \ endif
-augroup END
-
-" Desativando tab's de listchars para arquivos xml/html
-autocmd filetype html,xml set listchars-=tab:>.
+" Remove <Tab> from listchars for xml/html filetypes
+autocmd filetype html,xml set listchars-=tab:>-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  09) Mapeamento de teclas    """""""""""""""""""""""""""""""""""""""
-
-" Home vai para o primeiro caracter não branco na linha
+" > Keymaps
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Go to the first non whitespace character in the current line
 map <Home><Home> ^
 
-" Edita e recarrega o arquivo vimrc rapidamente
+" Shortcut to edit .vimrc
 nmap <silent> <leader>ev :tabnew<CR>:e $MYVIMRC<CR>
 nmap <silent> <leader>sv :tabnew<CR>:so $MYVIMRC<CR>
 
-" Troca ; e :
+" Change ; to :
 nnoremap ; :
 
-" Força o usuário a utilizar a navegação através de [hjkl]
+" Disable arrow for normal and visual modes
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-" Anula Ctrl+z
+" Unmap suspend function
 nmap <silent> <c-z> <nop>
 
-" Remove incompatilidade de caracteres do DOS
-"nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
+" Remove ^M from DOS file format
 nnoremap <leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
-" Chama a função browser na linha ,w
-map <leader>l :call Browser()<CR>
+" Open a link in the browser (firefox)
+map <leader>l :call BrowserNavigate()<CR><CR>
 
-" Abre o plugin Project ,pal
-nnoremap <silent> <leader>pal :Project .vimproject<CR>
-
-" TODO Mode
-nnoremap <silent> <leader>todo :execute TodoListMode()<CR>
-
-" Abre o plugin TagList
-nnoremap <silent> <F3> :Tlist<CR>
-
-" Abre o plugin Tagbar
-nnoremap <silent> <F4> :TagbarToggle<CR>
-
-" Próxima aba
+" Go to next tab
 nnoremap <silent> <C-Right> :tabnext<CR>
 
-" Aba anterior
+" Go to previous tab
 nnoremap <silent> <C-Left> :tabprevious<CR>
 
-" Nova aba
+" Open a new tab
 nnoremap <silent> <C-t> :tabnew<CR>
 
-" Fechar aba atual
-nnoremap <silent> <C-x> :tabclose<CR>
+" Close the current tab
+nnoremap <silent> <C-w> :tabclose<CR>
 
-" Troca o esquema de cores utilizando a função RotateColorTheme()
+" Switch color schemes with RotateColorTheme()
 nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
 
-" Toggle no diretório
+" Toggle current fold open/closed
 nnoremap <space> za
+
+" Toggle NERDTree
+nnoremap <silent> <C-k><C-b> :NERDTreeTabsToggle<CR>
+inoremap <silent> <C-k><C-b> <ESC>:NERDTreeTabsToggle<CR>:wincmd l<CR>i
+
+inoremap <C-K> <ESC>ddi
 
 " Altera o comportamento de navegação entre as linhas
 nnoremap j gj
 nnoremap k gk
 
-" Configura navegação entre split como: <ctrl> + <[hjkl]>
+" Tab navigation using <ctrl> + <[hjkl]>
 nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
-" Ativa a funcionalidade inverse tab (<Shift> + <Tab>)
+" Enable <Shift> + <Tab>
 nmap <S-Tab> <<
 imap <S-Tab> <Esc><<i
 
-" Usando <Q> para formatar o parágrafo atual ou seleção
+" Format paragraph
 vmap Q gq
 nmap Q gqap
 
-" Limpando buscas anteriores
-nmap <silent> ,/ :nohlsearch<CR>
+" Clear highlight from previous search
+nmap <silent> <leader>/ :nohlsearch<CR>
 
-" Salva arquivos como sudo
+" Prompt sudo to save files
 cmap w!! w !sudo tee % >/dev/null
 
-" Cria nova linha e continua no modo Normal
+" Insert a new line after the current line
 nnoremap <silent> zj o<Esc>
+
+" Insert a new line before the current line
 nnoremap <silent> zk O<Esc>
 
-" Foca o próximo item na busca
+" Focus the current match in a search
 map N Nzz
 map n nzz
 
-" Salva alterações sem fechar o arquivo
+" Shortcut to save file
 map <leader>s :w!<CR>
 
-" CD no diretório atual
+" Change to the current directory
 map <leader>%% :cd %:p:h<CR>:pwd<CR>
 
-" Abre o edit a partir do diretório atual
+" Run vim passing the current directory as an argument
 map <leader>v :e <C-R>=expand("%:p:h") . "/"<CR>
 
-" Abre as tags geradas por ctag com o plugin Ctrlp
+" Open ctags with Ctrlp
 nnoremap <leader>t :CtrlPTag<cr>
 
-" Ativa/desativa checagem gramatical
+" Toggle spell check
 map <leader>ss :set spell!<CR>
 
-" Seleciona todo o texto
+" Select all
 map <C-a> <esc>ggVG<CR>
 
-" Atalho para copiar
-" clipboard do botão do meio no mouse
-"vnoremap <C-c> "*y
-" clipboard padrão
+" Copy shortcut
 vnoremap <C-c> "+y
 
-" Abre a definição da tag em uma nova aba
+" Open the tag definition in split
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
-" Abre a definição da tag em vertical split
+" Open the tag definition in vertical split
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+" Search the word definition in Zeal
+nnoremap gZ :!zeal --query "<cword>"&<CR><CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""  10) Outras configurações    """""""""""""""""""""""""""""""""""""""
-
-" Utiliza o compilador gcc como padrão
+" > Other setup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set clang as the default compiler
 compiler clang
 
-" Configurando o plugin Tagbar
+" Setup Tagbar
 let g:tagbar_left=1
 
-" Enter abre o arquivo do lado direito do vim em uma tela tipo :vsplit
+" Setup netrw
 let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_liststyle=3
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Setup phpqa
+let g:phpqa_codesniffer_args = "--standard=PSR2"
+let g:phpqa_messdetector_autorun = 0
+let g:phpqa_codesniffer_autorun = 0
+let g:phpqa_codecoverage_autorun = 0
+
+" Setup vim-gitgutter
+set updatetime=250
