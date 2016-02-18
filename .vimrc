@@ -13,29 +13,11 @@
 " along with this configure rile.  If not, see <http://www.gnu.org/licenses/>.
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   > Autoload plugins in ~/.vim/bundle
-"   > General setup
-"   > Interface setup
-"   > Colors and fonts
-"   > Text format setup
-"   > Editor status
-"   > Command line abbreviations
-"   > Automatic commands
-"   > Keymaps
-"   > Other setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Autoload plugins in ~/.vim/bundle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autoload plugins in ~/.vim/bundle "{{{
 call pathogen#helptags()
 call pathogen#infect()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > General setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" General setup " {{{
 " Enable Vi Improved
 set nocompatible
 
@@ -105,10 +87,8 @@ set clipboard=unnamed
 if has('unnamedplus')
     set clipboard=unnamedplus
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Interface setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Interface setup "{{{
 " Enhances the vim command search
 set wildmenu
 
@@ -177,8 +157,8 @@ set foldmethod=marker
 
 " No folds closed
 set foldlevelstart=99
-
-" > Colors and fonts
+" }}}
+" Colors and fonts " {{{
 " http://vim.wikia.com/wiki/256_colors_in_vim
 " Run check_terminal_colors.py to see if your terminal support the 256 colors
 
@@ -191,7 +171,9 @@ set t_Co=256
 " Disable guioptions and set a default color scheme
 if &t_Co >= 256 || has("gui_running")
     " Default theme
-    colorscheme candy
+    colorscheme gruvbox
+
+    set background=dark
 
     " Remove gui toolbars
     set guioptions-=T
@@ -207,10 +189,8 @@ set nolinebreak
 
 " Automatic break files
 set wrap
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Text format setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Text format setup " {{{
 " Use spaces instead of <Tab>
 set expandtab
 
@@ -232,10 +212,8 @@ set copyindent
 
 " Enable C indent style
 set cindent
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Editor status
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Editor status " {{{
 " Show the current mode
 set showmode
 
@@ -253,25 +231,19 @@ set statusline+={%Y}
 set statusline+=%=
 set statusline+=[%l,%c]
 set statusline+=\ %L\ %P
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Command line abbreviations
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Command line abbreviations " {{{
 " Expand '%%/' to current directory in command line
 cabbr <expr> %% expand('%:p:h')
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Automatic commands
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Automatic commands " {{{
 " Remove trailling spaces
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Remove <Tab> from listchars for xml/html filetypes
 autocmd filetype html,xml set listchars-=tab:>-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Keymaps
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Keymaps " {{{
 " Go to the first non whitespace character in the current line
 map <Home><Home> ^
 
@@ -346,10 +318,10 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 cmap w!! w !sudo tee % >/dev/null
 
 " Insert a new line after the current line
-nnoremap <silent> zj o<Esc>
+nnoremap <silent> <C-down> o<Esc>
 
 " Insert a new line before the current line
-nnoremap <silent> zk O<Esc>
+nnoremap <silent> <C-up> O<Esc>
 
 " Focus the current match in a search
 map N Nzz
@@ -384,10 +356,8 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Search the word definition in Zeal
 nnoremap gZ :!zeal --query "<cword>"&<CR><CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" > Other setup
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Other setup " {{{
 " Set clang as the default compiler
 compiler clang
 
@@ -407,3 +377,4 @@ let g:phpqa_codecoverage_autorun = 0
 
 " Setup vim-gitgutter
 set updatetime=250
+" }}}
