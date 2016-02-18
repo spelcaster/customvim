@@ -4,13 +4,13 @@
 " and/or modify it under the terms of the GNU General Public License as
 " published by the Free Software Foundation, version 3..
 "
-" This configuration is distributed in the hope that it will be useful,
-" but WITHOUT ANY WARRANTY; without even the implied warranty of
-" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-" GNU General Public License for more details.
+" This configuration is distributed in the hope that it will be useful, but
+" WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+" or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+" more details.
 "
-" You should have received a copy of the GNU General Public License
-" along with this configure rile.  If not, see <http://www.gnu.org/licenses/>.
+" You should have received a copy of the GNU General Public License along with
+" this configure rile.  If not, see <http://www.gnu.org/licenses/>.
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autoload plugins in ~/.vim/bundle "{{{
@@ -87,6 +87,9 @@ set clipboard=unnamed
 if has('unnamedplus')
     set clipboard=unnamedplus
 endif
+
+" Scroll always keep 10 lines before and after
+set scrolloff=5
 " }}}
 " Interface setup "{{{
 " Enhances the vim command search
@@ -221,16 +224,16 @@ set showmode
 set laststatus=2
 
 " Format status line
-set statusline=%F
-set statusline+=%m
-set statusline+=%r
-set statusline+=%h
-set statusline+=%w
-set statusline+=\ (%{strlen(&fenc)?&fenc:'none'},\ %{&ff})
-set statusline+={%Y}
-set statusline+=%=
-set statusline+=[%l,%c]
-set statusline+=\ %L\ %P
+"set statusline=%F
+"set statusline+=%m
+"set statusline+=%r
+"set statusline+=%h
+"set statusline+=%w
+"set statusline+=\ (%{strlen(&fenc)?&fenc:'none'},\ %{&ff})
+"set statusline+={%Y}
+"set statusline+=%=
+"set statusline+=[%l,%c]
+"set statusline+=\ %L\ %P
 " }}}
 " Command line abbreviations " {{{
 " Expand '%%/' to current directory in command line
@@ -270,16 +273,16 @@ nnoremap <leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 map <leader>l :call BrowserNavigate()<CR><CR>
 
 " Go to next tab
-nnoremap <silent> <C-Right> :tabnext<CR>
+nnoremap <silent> tn :tabnext<CR>
 
 " Go to previous tab
-nnoremap <silent> <C-Left> :tabprevious<CR>
+nnoremap <silent> tp :tabprevious<CR>
 
 " Open a new tab
-nnoremap <silent> <C-t> :tabnew<CR>
+nnoremap <silent> tt :tabnew<CR>
 
 " Close the current tab
-nnoremap <silent> <C-w> :tabclose<CR>
+nnoremap <silent> tc :tabclose<CR>
 
 " Switch color schemes with RotateColorTheme()
 nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
@@ -377,4 +380,14 @@ let g:phpqa_codecoverage_autorun = 0
 
 " Setup vim-gitgutter
 set updatetime=250
+
+" Setup airline
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+let g:airline_theme='molokai'
 " }}}
