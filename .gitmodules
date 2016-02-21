@@ -85,3 +85,6 @@
 [submodule "bundle/vim-expand-region"]
 	path = bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region
+[submodule "bundle/switch"]
+	path = bundle/switch
+	url = https://github.com/AndrewRadev/switch.vim.git
