@@ -359,6 +359,15 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Search the word definition in Zeal
 nnoremap gZ :!zeal --query "<cword>"&<CR><CR>
+
+" Open CtrlP to search for tags in buffer
+nnoremap <silent> <leader>fb :CtrlPBufTagAll<CR>
+
+" Toggle Tagbar
+nnoremap <silent> <F4> :TagbarToggle<CR>
+
+" Toggle Gundo
+nnoremap <silent> <F5> :GundoToggle<CR>
 " }}}
 " Other setup " {{{
 " Set clang as the default compiler
