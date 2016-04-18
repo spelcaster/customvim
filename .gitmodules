@@ -94,3 +94,6 @@
 [submodule "bundle/vimtex"]
 	path = bundle/vimtex
 	url = https://github.com/lervag/vimtex.git
+[submodule "bundle/vim-gas"]
+	path = bundle/vim-gas
+	url = https://github.com/Shirk/vim-gas.git
