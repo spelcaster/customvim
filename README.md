@@ -1,3 +1,40 @@
+# customvim
+
+My Vim custom settings.
+
+## Important
+
+- Install [powerline prepatched fonts](https://github.com/powerline/fonts) to
+  user powerline symbols in vim-airline;
+
+# How to...
+
+## Install
+
+```shell
+cd ~
+
+# clone customvim
+git clone git@github.com:spelcaster/customvim.git .vim
+
+# backup your .vimrc
+cp -rfv .vimrc .vimrc.bak
+
+# create a symbolic link to customvim .vimrc
+ln -s .vim/.vimrc .vimrc
+
+cd .vim
+
+# install plugins
+git submodule update --init --recursive
+```
+
+# Reference
+
+- [List of used plugins](https://raw.githubusercontent.com/spelcaster/customvim/master/.gitmodules)
+- [Remove Submodule](https://gist.github.com/kyleturner/1563153)
+
+# License
 This file is free software configuration code: you can redistribute it
 and/or modify it under the terms of the GNU General Public License as
 published by the Free Software Foundation, version 3..
@@ -10,39 +47,3 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this configure rile.  If not, see <http://www.gnu.org/licenses/>
 
----
-
-#Plugins:
-
-[vim-autoformat](https://github.com/Chiel92/vim-autoformat)
-
-[a](http://www.vim.org/scripts/script.php?script_id=31)
-
-[vim-togglemouse](https://github.com/nvie/vim-togglemouse/blob/master/plugin/toggle_mouse.vim)
-
-[ctrlp](http://kien.github.io/ctrlp.vim/)
-
-[fugitive](http://www.vim.org/scripts/script.php?script_id=2975)
-
-[tagbar](https://github.com/majutsushi/tagbar)
-
-[easymotion](http://www.vim.org/scripts/script.php?script_id=3526)
-
----
-
-# Clonando plugins do Git:
-
-1. tcomment_vim:
-  1. git clone https://github.com/tomtom/tcomment_vim.git ~/.vim/bundle/tcomment_vim
-2. snipmate:
-  1. dependências:
-    1. git clone https://github.com/tomtom/tlib_vim.git ~/.vim/bundle/tlib_vim
-    2. git clone https://github.com/MarcWeber/vim-addon-mw-utils.git ~/.vim/bundle/vim-addon-mw-utils
-  2. plugin:
-    1. git clone https://github.com/garbas/vim-snipmate.git ~/.vim/bundle/vim-snipmate
-  3. opcional:
-    1. git clone https://github.com/honza/vim-snippets.git ~/.vim/bundle/vim-snippets
-3. YouCompleteMe:
-  1. git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
-
----
