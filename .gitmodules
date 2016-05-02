@@ -97,3 +97,6 @@
 [submodule "bundle/vim-gas"]
 	path = bundle/vim-gas
 	url = https://github.com/Shirk/vim-gas.git
+[submodule "bundle/vim-elixir"]
+	path = bundle/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
