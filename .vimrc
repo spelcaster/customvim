@@ -370,8 +370,6 @@ nnoremap <silent> <F4> :TagbarToggle<CR>
 nnoremap <silent> <F5> :GundoToggle<CR>
 " }}}
 " Other setup " {{{
-" Set clang as the default compiler
-compiler clang
 
 " Setup Tagbar
 let g:tagbar_left=1
@@ -381,26 +379,21 @@ let g:netrw_browse_split=4
 let g:netrw_altv=1
 let g:netrw_liststyle=3
 
-" Setup phpqa
-let g:phpqa_codesniffer_args = "--standard=PSR2"
-let g:phpqa_messdetector_autorun = 0
-let g:phpqa_codesniffer_autorun = 0
-let g:phpqa_codecoverage_autorun = 0
-
 " Setup vim-gitgutter
 set updatetime=250
 
 " Setup airline
-let g:airline_powerline_fonts = 1
-
+let g:airline_powerline_fonts=1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
 let g:airline_symbols.space = "\ua0"
 
 let g:airline_theme='molokai'
 
 " Setup syntastic
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_check_on_open=1
+
+let g:ctrlp_custom_ignore = 'obj'
 " }}}
