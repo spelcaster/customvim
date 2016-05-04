@@ -396,4 +396,11 @@ let g:airline_theme='molokai'
 let g:syntastic_check_on_open=1
 
 let g:ctrlp_custom_ignore = 'obj'
+
+" Setup UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " }}}
