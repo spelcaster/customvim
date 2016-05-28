@@ -97,3 +97,6 @@
 [submodule "bundle/yajs"]
 	path = bundle/yajs
 	url = git@github.com:othree/yajs.vim.git
+[submodule "bundle/typescript-vim"]
+	path = bundle/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
