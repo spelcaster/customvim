@@ -94,3 +94,6 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/yajs"]
+	path = bundle/yajs
+	url = git@github.com:othree/yajs.vim.git
