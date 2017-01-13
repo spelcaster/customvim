@@ -1,108 +1,144 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+	branch = master
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+	branch = master
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+	branch = master
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+	branch = master
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
+	branch = master
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+	branch = master
 [submodule "bundle/phpcomplete"]
 	path = bundle/phpcomplete
 	url = https://github.com/shawncplus/phpcomplete.vim.git
+	branch = master
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+	branch = master
 [submodule "bundle/vim-repeat"]
 	path = bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+	branch = master
 [submodule "bundle/vim-gitgutter"]
 	path = bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+	branch = master
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
+	branch = master
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+	branch = master
 [submodule "bundle/vim-colorschemes"]
 	path = bundle/vim-colorschemes
 	url = https://github.com/flazz/vim-colorschemes.git
+	branch = master
 [submodule "bundle/alternate"]
 	path = bundle/alternate
 	url = https://github.com/vim-scripts/a.vim.git
+	branch = master
 [submodule "bundle/nerdtree-git"]
 	path = bundle/nerdtree-git
-	url = git@github.com:Xuyuanp/nerdtree-git-plugin.git
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+	branch = master
 [submodule "bundle/nerdtree-tabs"]
 	path = bundle/nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
+	branch = master
 [submodule "bundle/calendar"]
 	path = bundle/calendar
 	url = https://github.com/itchyny/calendar.vim.git
+	branch = master
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+	branch = master
 [submodule "bundle/vim-airline-themes"]
 	path = bundle/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
+	branch = master
 [submodule "bundle/numbers"]
 	path = bundle/numbers
 	url = https://github.com/myusuf3/numbers.vim.git
+	branch = master
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+	branch = master
 [submodule "bundle/emmet"]
 	path = bundle/emmet
 	url = https://github.com/mattn/emmet-vim.git
+	branch = master
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+	branch = master
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown
+	branch = master
 [submodule "bundle/vim-expand-region"]
 	path = bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region
+	branch = master
 [submodule "bundle/switch"]
 	path = bundle/switch
 	url = https://github.com/AndrewRadev/switch.vim.git
+	branch = master
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+	branch = master
 [submodule "bundle/searchcomplete"]
 	path = bundle/searchcomplete
 	url = https://github.com/vim-scripts/SearchComplete.git
+	branch = master
 [submodule "bundle/vimtex"]
 	path = bundle/vimtex
 	url = https://github.com/lervag/vimtex.git
+	branch = master
 [submodule "bundle/vim-gas"]
 	path = bundle/vim-gas
 	url = https://github.com/Shirk/vim-gas.git
+	branch = master
 [submodule "bundle/vim-elixir"]
 	path = bundle/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
+	branch = master
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+	branch = master
 [submodule "bundle/yajs"]
 	path = bundle/yajs
-	url = git@github.com:othree/yajs.vim.git
+	url = https://github.com/othree/yajs.vim.git
+	branch = master
 [submodule "bundle/typescript-vim"]
 	path = bundle/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim.git
+	url = https://github.com/leafgarland/typescript-vim.git
+	branch = master
 [submodule "bundle/tsuquyomi"]
 	path = bundle/tsuquyomi
-	url = git@github.com:Quramy/tsuquyomi.git
+	url = https://github.com/Quramy/tsuquyomi.git
+	branch = master
 [submodule "bundle/vimproc"]
 	path = bundle/vimproc
-	url = git@github.com:Shougo/vimproc.vim.git
+	url = https://github.com/Shougo/vimproc.vim.git
+	branch = master
