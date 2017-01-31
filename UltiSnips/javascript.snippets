@@ -1,0 +1,138 @@
+global !p
+from ultisnips_helpers import *
+endglobal
+
+extends html
+priority 2
+
+### es6
+
+snippet import "Import something" b
+import ${1:App} from '${2:./components/App}';
+endsnippet
+
+### react
+
+snippet reactclass "Create a react class" b
+import React from 'react';
+
+class ${1:App} extends ${2:React.Component} {
+	${3:// class body}
+}
+
+export default $1;
+endsnippet
+
+### *.jsx
+
+snippet class" "class=" w
+className="$1"
+endsnippet
+
+snippet class{ "class={}" w
+className={$1}
+endsnippet
+
+snippet id{ "id={}" w
+id={$1}
+endsnippet
+
+snippet ref" "ref=" w
+ref="$1"
+endsnippet
+
+snippet ref{ "ref={}" w
+ref={$1}
+endsnippet
+
+snippet onclick{ "onClick={}" w
+onClick={$1}
+endsnippet
+
+snippet dangerouslySetInnerHTML "dangerouslySetInnerHTML=" w
+dangerouslySetInnerHTML={$1}
+endsnippet
+
+snippet constructor "class constructor for react" b
+constructor(props) {
+	super(props);$1
+}
+endsnippet
+
+snippet render "render function" b
+render() {
+	return ($1
+	);
+}
+endsnippet
+
+snippet didmount "componentDidMount()" b
+componentDidMount() {
+	${1:;}
+}
+endsnippet
+
+snippet willunmount "componentWillUnmount()" b
+componentWillUnmount() {
+	${1:;}
+}
+endsnippet
+
+###
+# classnames
+snippet classNames "classNames() function" w
+classNames($1)
+endsnippet
+
+snippet c "c()" w
+c($1)
+endsnippet
+
+###
+# react-router snippets
+snippet Routerm "react-router Router multiline" b
+<Router history={createBrowserHistory()}>$1
+</Router>
+endsnippet
+
+snippet Route "react-router Route" b
+<Route path="$1" component={$2} />
+endsnippet
+
+snippet Routem "react-route Route multiline" b
+<Route path="$1" component={$2}>$3
+</Route>
+endsnippet
+
+snippet IndexRoute "react-router IndexRoute" b
+<IndexRoute component={$1} />
+endsnippet
+
+snippet path "path=" w
+path="$1"
+endsnippet
+
+snippet history "history=" w
+history={$1}
+endsnippet
+
+snippet component "component=" w
+component={$1}
+endsnippet
+
+snippet Link "react-router Link" w
+<Link to="$1"`!p
+add_str_if(snip, t[2], " ")
+`$2>$3</Link>
+endsnippet
+
+snippet Linkm "react-router Link multiline" w
+<Link to="$1"`!p
+add_str_if(snip, t[2], " ")
+`$2>$3
+</Link>
+endsnippet
+
+###
+
+# vim: set ts=4:
