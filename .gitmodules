@@ -146,3 +146,7 @@
 	path = bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
 	branch = master
+[submodule "bundle/vim-jsx"]
+	path = bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
+	branch = master
