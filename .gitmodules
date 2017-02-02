@@ -142,3 +142,7 @@
 	path = bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim.git
 	branch = master
+[submodule "bundle/vim-javascript"]
+	path = bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+	branch = master
