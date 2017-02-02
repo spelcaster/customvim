@@ -385,17 +385,19 @@ set updatetime=250
 " Setup airline
 let g:airline_powerline_fonts=1
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+    let g:airline_symbols={}
 endif
 
-let g:airline_symbols.space = "\ua0"
+let g:airline_symbols.space="\ua0"
 
 let g:airline_theme='molokai'
 
 " Setup syntastic
 let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers=['standard']
 
-let g:ctrlp_custom_ignore = 'obj'
+" Setup ctrlp
+let g:ctrlp_custom_ignore='obj'
 
 " Setup UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -405,9 +407,12 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " Setup emmet
-let g:user_emmet_settings = {
+let g:user_emmet_settings={
 \  'javascript' : {
 \      'extends' : 'jsx',
 \  },
 \}
+
+" Setup vim-jsx
+let g:jsx_ext_required=0
 " }}}

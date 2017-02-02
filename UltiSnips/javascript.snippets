@@ -6,27 +6,38 @@ extends html
 priority 2
 
 ### es6
-
 snippet import "Import something" b
-import ${1:App} from '${2:./components/App}';
+import ${1:something} from '${2:somewhere}'
+endsnippet
+
+snippet import{ "Import something 2" b
+import { ${1:something} } from '${2:somewhere}'
 endsnippet
 
 ### react
+snippet rimport "Import react into script" b
+import ${1:React} from '${2:react}'
+endsnippet
 
-snippet reactclass "Create a react class" b
-import React from 'react';
-
+snippet rclass "Create a react class" b
 class ${1:App} extends ${2:React.Component} {
 	${3:// class body}
 }
 
-export default $1;
+export default $1
+endsnippet
+
+snippet rslfun "Create a stateless function" b
+const ${1:App} = (${2:props}) => {
+	${3:// stateless function body}
+}
+
+export default $1
 endsnippet
 
 ### *.jsx
-
 snippet class" "class=" w
-className="$1"
+className='$1'
 endsnippet
 
 snippet class{ "class={}" w
@@ -38,11 +49,11 @@ id={$1}
 endsnippet
 
 snippet ref" "ref=" w
-ref="$1"
+ref='$1'
 endsnippet
 
 snippet ref{ "ref={}" w
-ref={$1}
+ref={(${1:input}) => { this.${2:value} = ${3:$1} }}
 endsnippet
 
 snippet onclick{ "onClick={}" w
@@ -54,15 +65,15 @@ dangerouslySetInnerHTML={$1}
 endsnippet
 
 snippet constructor "class constructor for react" b
-constructor(props) {
-	super(props);$1
+constructor (props) {
+	super(props)$1
 }
 endsnippet
 
 snippet render "render function" b
-render() {
+render () {
 	return ($1
-	);
+	)
 }
 endsnippet
 
@@ -96,11 +107,11 @@ snippet Routerm "react-router Router multiline" b
 endsnippet
 
 snippet Route "react-router Route" b
-<Route path="$1" component={$2} />
+<Route path='$1' component={$2} />
 endsnippet
 
 snippet Routem "react-route Route multiline" b
-<Route path="$1" component={$2}>$3
+<Route path='$1' component={$2}>$3
 </Route>
 endsnippet
 
@@ -109,7 +120,7 @@ snippet IndexRoute "react-router IndexRoute" b
 endsnippet
 
 snippet path "path=" w
-path="$1"
+path='$1'
 endsnippet
 
 snippet history "history=" w
@@ -121,13 +132,13 @@ component={$1}
 endsnippet
 
 snippet Link "react-router Link" w
-<Link to="$1"`!p
+<Link to='$1'`!p
 add_str_if(snip, t[2], " ")
 `$2>$3</Link>
 endsnippet
 
 snippet Linkm "react-router Link multiline" w
-<Link to="$1"`!p
+<Link to='$1'`!p
 add_str_if(snip, t[2], " ")
 `$2>$3
 </Link>
@@ -135,4 +146,4 @@ endsnippet
 
 ###
 
-# vim: set ts=4:
+# vim: set ts=2:
