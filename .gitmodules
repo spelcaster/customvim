@@ -154,3 +154,7 @@
 	path = bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 	branch = master
+[submodule "bundle/auto-pairs"]
+	path = bundle/auto-pairs
+	url = https://github.com/yukunlin/auto-pairs.git
+	branch = master
