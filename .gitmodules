@@ -150,3 +150,7 @@
 	path = bundle/vim-jsx
 	url = https://github.com/mxw/vim-jsx.git
 	branch = master
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+	branch = master
