@@ -331,16 +331,13 @@ map N Nzz
 map n nzz
 
 " Shortcut to save file
-map <leader>s :w!<CR>
+map <leader>w :w!<CR>
 
 " Change to the current directory
 map <leader>%% :cd %:p:h<CR>:pwd<CR>
 
 " Run vim passing the current directory as an argument
 map <leader>v :e <C-R>=expand("%:p:h") . "/"<CR>
-
-" Open ctags with Ctrlp
-nnoremap <leader>t :CtrlPTag<cr>
 
 " Toggle spell check
 map <leader>ss :set spell!<CR>
@@ -358,20 +355,24 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Search the word definition in Zeal
-nnoremap gZ :!zeal --query "<cword>"&<CR><CR>
-
-" Open CtrlP to search for tags in buffer
-nnoremap <silent> <leader>fb :CtrlPBufTagAll<CR>
-
-" Toggle Tagbar
-nnoremap <silent> <F4> :TagbarToggle<CR>
-
-" Toggle Gundo
-nnoremap <silent> <F5> :GundoToggle<CR>
+nnoremap <leader>z :!zeal --query "<cword>"&<CR><CR>
 " }}}
 " Other setup " {{{
 " Setup autocomand
 au CompleteDone * pclose
+
+" Setup CtrlP
+" Open ctags with Ctrlp
+nnoremap <leader>t :CtrlPTag<cr>
+
+" Open CtrlP to search for tags in buffer
+nnoremap <silent> <leader>b :CtrlPBufTagAll<CR>
+
+" Setup Tagbar
+nnoremap <silent> <F4> :TagbarToggle<CR>
+
+" Setup Gundo
+nnoremap <silent> <leader>g :GundoToggle<CR>
 
 " Setup Tagbar
 let g:tagbar_left=1
@@ -433,6 +434,6 @@ function! s:align()
 endfunction
 
 " Setup argumenrewrap
-nnoremap <silent> <leader>w :call argumentrewrap#RewrapArguments()<CR>
+nnoremap <silent> <leader>s :call argumentrewrap#RewrapArguments()<CR>
 
 " }}}
