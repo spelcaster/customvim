@@ -162,3 +162,7 @@
 	path = bundle/argumentrewrap
 	url = https://github.com/weierophinney/argumentrewrap.git
 	branch = master
+[submodule "bundle/vdebug"]
+	path = bundle/vdebug
+	url = https://github.com/joonty/vdebug.git
+	branch = master
