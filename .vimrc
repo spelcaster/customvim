@@ -362,10 +362,13 @@ nnoremap <leader>z :!zeal --query "<cword>"&<CR><CR>
 au CompleteDone * pclose
 
 " Setup CtrlP
+let g:ctrlp_custom_ignore='obj'
+
 " Open ctags with Ctrlp
 nnoremap <leader>t :CtrlPTag<cr>
 
 " Open CtrlP to search for tags in buffer
+nnoremap <silent> <leader>r :CtrlPBufTag<CR>
 nnoremap <silent> <leader>b :CtrlPBufTagAll<CR>
 
 " Setup Tagbar
@@ -398,9 +401,6 @@ let g:airline_theme='molokai'
 " Setup syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers=['standard']
-
-" Setup ctrlp
-let g:ctrlp_custom_ignore='obj'
 
 " Setup UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
