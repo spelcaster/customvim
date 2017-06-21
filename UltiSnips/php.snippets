@@ -1,0 +1,52 @@
+snippet $ "variable assignment"
+$${1:varName} = ${2:"value"};
+endsnippet
+
+snippet act "Create a default silex action"
+/**
+ * Resposta a requisição
+ *
+ * @param Request     $request Requisição HTTP
+ * @param Application $app     Aplicação Silex
+ *
+ * @return null
+ */
+public function ${1}Action(Request $request, Application $app)
+{
+	return $app['twig']->render();
+}
+endsnippet
+
+snippet jact "Create a default silex action with json return"
+/**
+ * Resposta a requisição /$1
+ *
+ * @param Request     $request Requisição HTTP
+ * @param Application $app     Aplicação Silex
+ *
+ * @return string Objeto JSON
+ */
+public function ${1}Action(Request $request, Application $app)
+{
+	$response = new JsonResponse();
+	$response->setData([]);
+
+	return $response;
+}
+endsnippet
+
+snippet dump "var_dump"
+var_dump($${1:var});
+endsnippet
+
+snippet jdump "var_dump with json_encode"
+var_dump(json_encode($${1:var}, JSON_PRETTY_PRINT));
+endsnippet
+
+snippet err "error_log"
+error_log($${1:var});
+endsnippet
+
+snippet jerr "error_log with json_encode"
+error_log(json_encode($${1:var}, JSON_PRETTY_PRINT));
+endsnippet
