@@ -166,3 +166,7 @@
 	path = bundle/vdebug
 	url = git://github.com/joonty/vdebug.git
 	branch = master
+[submodule "bundle/phpcd"]
+	path = bundle/phpcd
+	url = git://github.com/lvht/phpcd.vim.git
+	branch = master
