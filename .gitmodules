@@ -170,3 +170,15 @@
 	path = bundle/phpcd
 	url = git://github.com/lvht/phpcd.vim.git
 	branch = master
+[submodule "bundle/deoplete.nvim"]
+	path = bundle/deoplete.nvim
+	url = git://github.com/Shougo/deoplete.nvim.git
+	branch = master
+[submodule "bundle/nvim-yarp"]
+	path = bundle/nvim-yarp
+	url = git://github.com/roxma/nvim-yarp.git
+	branch = master
+[submodule "bundle/vim-hug-neovim-rpc"]
+	path = bundle/vim-hug-neovim-rpc
+	url = git://github.com/roxma/vim-hug-neovim-rpc.git
+	branch = master
