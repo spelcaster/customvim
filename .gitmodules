@@ -182,3 +182,7 @@
 	path = bundle/vim-hug-neovim-rpc
 	url = git://github.com/roxma/vim-hug-neovim-rpc.git
 	branch = master
+[submodule "bundle/deoplete-ternjs"]
+	path = bundle/deoplete-ternjs
+	url = git://github.com/carlitux/deoplete-ternjs.git
+	branch = master
