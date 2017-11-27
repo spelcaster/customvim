@@ -186,3 +186,7 @@
 	path = bundle/deoplete-ternjs
 	url = git://github.com/carlitux/deoplete-ternjs.git
 	branch = master
+[submodule "bundle/clang_complete"]
+	path = bundle/clang_complete
+	url = git://github.com/Rip-Rip/clang_complete.git
+	branch = master
