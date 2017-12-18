@@ -22,10 +22,6 @@
 	path = bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
 	branch = master
-[submodule "bundle/phpcomplete"]
-	path = bundle/phpcomplete
-	url = git://github.com/shawncplus/phpcomplete.vim.git
-	branch = master
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
