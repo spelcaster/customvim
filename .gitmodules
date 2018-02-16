@@ -152,11 +152,11 @@
 	branch = master
 [submodule "bundle/auto-pairs"]
 	path = bundle/auto-pairs
-	url = git://github.com/yukunlin/auto-pairs.git
+	url = git://github.com/jiangmiao/auto-pairs.git
 	branch = master
 [submodule "bundle/argumentrewrap"]
 	path = bundle/argumentrewrap
-	url = git://github.com/weierophinney/argumentrewrap.git
+	url = git://github.com/jakobwesthoff/argumentrewrap.git
 	branch = master
 [submodule "bundle/vdebug"]
 	path = bundle/vdebug
@@ -185,4 +185,8 @@
 [submodule "bundle/clang_complete"]
 	path = bundle/clang_complete
 	url = git://github.com/Rip-Rip/clang_complete.git
+	branch = master
+[submodule "bundle/ctrlp-funky"]
+	path = bundle/ctrlp-funky
+	url = git://github.com/tacahiroy/ctrlp-funky.git
 	branch = master
