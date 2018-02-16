@@ -190,3 +190,7 @@
 	path = bundle/ctrlp-funky
 	url = git://github.com/tacahiroy/ctrlp-funky.git
 	branch = master
+[submodule "bundle/cscope"]
+	path = bundle/cscope
+	url = git://github.com/vim-scripts/cscope.vim.git
+	branch = master
