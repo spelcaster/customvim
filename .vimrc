@@ -99,7 +99,10 @@ set wildmenu
 set wildmode=list:longest,full
 
 " Ignore files by type
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.jx
+set wildignore=*.swp,*.bak
+set wildignore+=*.pyc,*.jx
+set wildignore+=*.zip,*.rar
+set wildignore+=*.a,*.out,*.so,*.o
 
 " Show cursor position in status line
 set ruler
@@ -270,7 +273,7 @@ nmap <silent> <c-z> <nop>
 nnoremap <leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
 " Open a link in the browser (firefox)
-map <leader>l :call BrowserNavigate()<CR><CR>
+map <leader>s :call BrowserNavigate()<CR><CR>
 
 " Go to next tab
 nnoremap <silent> tn :tabnext<CR>
@@ -399,7 +402,7 @@ let g:airline_symbols.space="\ua0"
 let g:airline_theme='molokai'
 
 " Setup syntastic
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_javascript_checkers=['standard']
 
 " Setup UltiSnips
@@ -436,11 +439,56 @@ endfunction
 " Setup argumenrewrap
 nnoremap <silent> <leader>s :call argumentrewrap#RewrapArguments()<CR>
 
+" Setup ctrl-funky
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+" Setup cscope
+nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
+" s: Find this C symbol
+nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
+
+" Setup auto-pairs
+let g:AutoPairsMapCR=0
+imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
+
 " Setup clang_complete
 let g:clang_library_path = '/usr/lib/libclang.so'
+let g:clang_complete_auto = 0
+let g:clang_use_library = 1
+let g:clang_periodic_quickfix = 0
+let g:clang_close_preview = 1
+let g:clang_snippets = 1
 
 " Setup deoplete
 let g:deoplete#enable_at_startup = 1
+
+function Multiple_cursors_before()
+  let g:deoplete#disable_auto_complete = 1
+endfunction
+function Multiple_cursors_after()
+  let g:deoplete#disable_auto_complete = 0
+endfunction
+
+" Setup phpcd
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
 
 " Setup deoplete-ternjs
 " Set bin if you have many instalations

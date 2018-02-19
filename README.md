@@ -29,6 +29,25 @@ cd .vim
 git submodule update --init --recursive
 ```
 
+### Plugins with a Makefile
+
+The following directories have a Makefile on it and they should be built to work
+as expected.
+
+```shell
+bundle/clang_complete
+bundle/deoplete.nvim
+bundle/emmet
+bundle/yajs
+bundle/vimproc
+bundle/supertab
+
+# example: build deoplete
+# deoplete install some python dependencies, so it need to be run as super user
+cd bundle/deoplete.nvim
+sudo make
+```
+
 # Reference
 
 - [List of used plugins](https://raw.githubusercontent.com/spelcaster/customvim/master/.gitmodules)
