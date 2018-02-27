@@ -176,6 +176,8 @@ set t_Co=256
 
 " Disable guioptions and set a default color scheme
 if &t_Co >= 256 || has("gui_running")
+    let g:gruvbox_italic=1
+
     " Default theme
     colorscheme gruvbox
 
