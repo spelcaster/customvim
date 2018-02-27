@@ -194,3 +194,7 @@
 	path = bundle/cscope
 	url = git://github.com/vim-scripts/cscope.vim.git
 	branch = master
+[submodule "bundle/gruvbox"]
+	path = bundle/gruvbox
+	url = git://github.com/morhetz/gruvbox.git
+	branch = master
