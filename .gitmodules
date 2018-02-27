@@ -42,10 +42,6 @@
 	path = bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
 	branch = master
-[submodule "bundle/vim-colorschemes"]
-	path = bundle/vim-colorschemes
-	url = git://github.com/flazz/vim-colorschemes.git
-	branch = master
 [submodule "bundle/alternate"]
 	path = bundle/alternate
 	url = git://github.com/vim-scripts/a.vim.git
