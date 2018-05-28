@@ -144,6 +144,14 @@ add_str_if(snip, t[2], " ")
 </Link>
 endsnippet
 
+snippet jerr "json dump"
+console.log(JSON.stringify($1, null, 2))
+endsnippet
+
+snippet err "dump"
+console.log($1)
+endsnippet
+
 ###
 
 # vim: set ts=2:
