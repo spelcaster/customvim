@@ -5,4 +5,4 @@ let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 let g:UltiSnipsEditSplit="vertical"
 
 " add specific project folders here
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsSnippetDirectories=['.UltiSnips', '~/.vim/UltiSnips']
