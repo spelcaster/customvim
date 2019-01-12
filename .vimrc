@@ -46,6 +46,9 @@ set history=1000
 " Define vim's undo stack max length
 set undolevels=1000
 
+" Increase tab page limit
+set tabpagemax=100
+
 " Filetype setup
 filetype on
 filetype plugin on
