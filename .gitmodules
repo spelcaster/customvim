@@ -194,3 +194,7 @@
 	path = bundle/vim-visual-multi
 	url = git://github.com/mg979/vim-visual-multi.git
 	branch = master
+[submodule "bundle/vim-argwrap"]
+	path = bundle/vim-argwrap
+	url = git://github.com/FooSoft/vim-argwrap.git
+	branch = master
