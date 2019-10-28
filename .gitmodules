@@ -146,10 +146,6 @@
 	path = bundle/auto-pairs
 	url = git://github.com/jiangmiao/auto-pairs.git
 	branch = master
-[submodule "bundle/argumentrewrap"]
-	path = bundle/argumentrewrap
-	url = git://github.com/jakobwesthoff/argumentrewrap.git
-	branch = master
 [submodule "bundle/vdebug"]
 	path = bundle/vdebug
 	url = git://github.com/joonty/vdebug.git
