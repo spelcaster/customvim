@@ -198,3 +198,11 @@
 	path = bundle/vim-argwrap
 	url = git://github.com/FooSoft/vim-argwrap.git
 	branch = master
+[submodule "bundle/vim-blade"]
+	path = bundle/vim-blade
+	url = git://github.com/jwalton512/vim-blade
+	branch = master
+[submodule "bundle/context_filetype.vim"]
+	path = bundle/context_filetype.vim
+	url = git://github.com/Shougo/context_filetype.vim.git
+	branch = master
