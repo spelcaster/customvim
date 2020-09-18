@@ -202,3 +202,7 @@
 	path = bundle/context_filetype.vim
 	url = git://github.com/Shougo/context_filetype.vim.git
 	branch = master
+[submodule "bundle/vim-clang"]
+	path = bundle/vim-clang
+	url = git://github.com/justmao945/vim-clang.git
+	branch = master
