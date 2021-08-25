@@ -34,10 +34,6 @@
 	path = bundle/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
 	branch = master
-[submodule "bundle/gundo"]
-	path = bundle/gundo
-	url = git://github.com/sjl/gundo.vim.git
-	branch = master
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
@@ -205,4 +201,12 @@
 [submodule "bundle/vim-clang"]
 	path = bundle/vim-clang
 	url = git://github.com/justmao945/vim-clang.git
+	branch = master
+[submodule "bundle/vim-minimap"]
+	path = bundle/vim-minimap
+	url = git://github.com/severin-lemaignan/vim-minimap
+	branch = master
+[submodule "bundle/undotree"]
+	path = bundle/undotree
+	url = git://github.com/mbbill/undotree.git
 	branch = master

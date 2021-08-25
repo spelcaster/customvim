@@ -16,6 +16,24 @@
 " Autoload plugins in ~/.vim/bundle "{{{
 call pathogen#helptags()
 call pathogen#infect()
+
+" enforce python3 usage
+call has('python3')
+
+" undotree(https://github.com/mbbill/undotree#usage)
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
+
 " }}}
 " General setup " {{{
 " Enable Vi Improved
@@ -74,14 +92,12 @@ set listchars=tab:>-,trail:.,extends:#,nbsp:.,precedes:«,extends:»
 set pastetoggle=<F2>
 
 " Change completion popup menu behavior
-set completeopt=longest,menuone,preview
+set completeopt=longest,menu,menuone,noselect
 
 " Disable redraw while running macros
 set nolazyredraw
 
-" Create a persistent undo history
-set undodir=~/.vim/undobackups
-set undofile
+set redrawtime=10000
 
 " Use the system clipboard
 set clipboard=unnamed
@@ -159,10 +175,10 @@ if version >= 700
 endif
 
 " Syntax highlighting items specify folds
-set foldmethod=syntax
+set foldmethod=indent
 
 " Markers are used to specify folds
-set foldmethod=marker
+" set foldmethod=marker
 
 " No folds closed
 set foldlevelstart=99
@@ -278,10 +294,10 @@ map <right> <nop>
 nmap <silent> <c-z> <nop>
 
 " Remove ^M from DOS file format
-nnoremap <leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
+nnoremap <leader>dos mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
 " Open a link in the browser (firefox)
-map <leader>s :call BrowserNavigate()<CR><CR>
+map <leader>sr :call BrowserNavigate()<CR><CR>
 
 " Go to next tab
 nnoremap <silent> tn :tabnext<CR>
@@ -364,9 +380,6 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Open the tag definition in vertical split
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-" Search the word definition in Zeal
-nnoremap <leader>z :!zeal --query "<cword>"&<CR><CR>
 " }}}
 
 " Other setup " {{{
