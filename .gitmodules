@@ -206,3 +206,6 @@
 	path = bundle/undotree
 	url = https://github.com/mbbill/undotree.git
 	branch = master
+[submodule "bundle/phpcd"]
+	path = bundle/phpcd
+	url = https://github.com/taoso/phpcd.vim.git
