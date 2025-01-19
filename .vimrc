@@ -14,8 +14,8 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autoload plugins in ~/.vim/bundle "{{{
-call pathogen#helptags()
 call pathogen#infect()
+call pathogen#helptags()
 
 " enforce python3 usage
 call has('python3')
@@ -200,6 +200,7 @@ if &t_Co >= 256 || has("gui_running")
     " Default theme
     colorscheme gruvbox
 
+    "set background=light
     set background=dark
 
     " Remove gui toolbars
