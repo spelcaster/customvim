@@ -5,3 +5,5 @@ doc
 .VimballRecord
 !log/.gitkeep
 log
+!plugged/.gitkeep
+plugged
