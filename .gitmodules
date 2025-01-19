@@ -18,10 +18,6 @@
 	path = bundle/ctrlp
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
 	branch = master
-[submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
-	branch = master
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
@@ -94,45 +90,13 @@
 	path = bundle/searchcomplete
 	url = https://github.com/vim-scripts/SearchComplete.git
 	branch = master
-[submodule "bundle/vimtex"]
-	path = bundle/vimtex
-	url = https://github.com/lervag/vimtex.git
-	branch = master
 [submodule "bundle/vim-gas"]
 	path = bundle/vim-gas
 	url = https://github.com/Shirk/vim-gas.git
 	branch = master
-[submodule "bundle/vim-elixir"]
-	path = bundle/vim-elixir
-	url = https://github.com/elixir-lang/vim-elixir.git
-	branch = master
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
-	branch = master
-[submodule "bundle/yajs"]
-	path = bundle/yajs
-	url = https://github.com/othree/yajs.vim.git
-	branch = master
-[submodule "bundle/typescript-vim"]
-	path = bundle/typescript-vim
-	url = https://github.com/leafgarland/typescript-vim.git
-	branch = master
-[submodule "bundle/tsuquyomi"]
-	path = bundle/tsuquyomi
-	url = https://github.com/Quramy/tsuquyomi.git
-	branch = master
-[submodule "bundle/vimproc"]
-	path = bundle/vimproc
-	url = https://github.com/Shougo/vimproc.vim.git
-	branch = master
-[submodule "bundle/vim-javascript"]
-	path = bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
-	branch = master
-[submodule "bundle/vim-jsx"]
-	path = bundle/vim-jsx
-	url = https://github.com/mxw/vim-jsx.git
 	branch = master
 [submodule "bundle/tabular"]
 	path = bundle/tabular
@@ -146,22 +110,6 @@
 	path = bundle/vdebug
 	url = https://github.com/joonty/vdebug.git
 	branch = master
-[submodule "bundle/deoplete.nvim"]
-	path = bundle/deoplete.nvim
-	url = https://github.com/Shougo/deoplete.nvim.git
-	branch = master
-[submodule "bundle/nvim-yarp"]
-	path = bundle/nvim-yarp
-	url = https://github.com/roxma/nvim-yarp.git
-	branch = master
-[submodule "bundle/vim-hug-neovim-rpc"]
-	path = bundle/vim-hug-neovim-rpc
-	url = https://github.com/roxma/vim-hug-neovim-rpc.git
-	branch = master
-[submodule "bundle/deoplete-ternjs"]
-	path = bundle/deoplete-ternjs
-	url = https://github.com/carlitux/deoplete-ternjs.git
-	branch = master
 [submodule "bundle/ctrlp-funky"]
 	path = bundle/ctrlp-funky
 	url = https://github.com/tacahiroy/ctrlp-funky.git
@@ -173,10 +121,6 @@
 [submodule "bundle/gruvbox"]
 	path = bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
-	branch = master
-[submodule "vim-visual-multi"]
-	path = bundle/vim-visual-multi
-	url = https://github.com/mg979/vim-visual-multi.git
 	branch = master
 [submodule "bundle/vim-visual-multi"]
 	path = bundle/vim-visual-multi
@@ -206,6 +150,3 @@
 	path = bundle/undotree
 	url = https://github.com/mbbill/undotree.git
 	branch = master
-[submodule "bundle/phpcd"]
-	path = bundle/phpcd
-	url = https://github.com/taoso/phpcd.vim.git
