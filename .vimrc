@@ -14,11 +14,50 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autoload plugins in ~/.vim/bundle "{{{
-call pathogen#infect()
-call pathogen#helptags()
+call plug#begin()
 
-" enforce python3 usage
-call has('python3')
+" List your plugins here
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-markdown'
+Plug 'airblade/vim-gitgutter'
+Plug 'terryma/vim-expand-region'
+Plug 'AndrewRadev/switch.vim'
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/SearchComplete'
+Plug 'Shirk/vim-gas'
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'godlygeek/tabular'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'joonty/vdebug'
+Plug 'easymotion/vim-easymotion'
+Plug 'tacahiroy/ctrlp-funky'
+Plug 'vim-scripts/cscope.vim'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'morhetz/gruvbox'
+Plug 'mg979/vim-visual-multi'
+Plug 'FooSoft/vim-argwrap'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'itchyny/calendar.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'myusuf3/numbers.vim'
+Plug 'mattn/emmet-vim'
+Plug 'majutsushi/tagbar'
+Plug 'jwalton512/vim-blade'
+Plug 'Shougo/context_filetype.vim'
+Plug 'justmao945/vim-clang'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'mbbill/undotree'
+
+call plug#end()
 
 " undotree(https://github.com/mbbill/undotree#usage)
 if has("persistent_undo")
