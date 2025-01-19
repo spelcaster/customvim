@@ -1,3 +1,5 @@
 .netrwhist
 undobackups/*
 colors/*
+doc
+.VimballRecord
