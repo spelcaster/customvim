@@ -3,3 +3,5 @@ undobackups/*
 colors/*
 doc
 .VimballRecord
+!log/.gitkeep
+log
