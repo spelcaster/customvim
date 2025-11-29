@@ -68,10 +68,12 @@ Plug 'thomasfaingnaert/vim-lsp-snippets'
 Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 
 " Coding things
-Plug 'joonty/vdebug'
+Plug 'puremourning/vimspector'
 Plug 'mattn/emmet-vim'
 Plug 'jwalton512/vim-blade'
 Plug 'justmao945/vim-clang'
+
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -442,3 +444,10 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Setup autocomand
 au CompleteDone * pclose
 " }}}
+
+" If file is under /mnt/*, avoid extra writes that trigger AV/indexer
+augroup MntDrives
+  autocmd!
+  autocmd BufReadPre /mnt/* setlocal noswapfile nobackup noundofile
+  autocmd BufNewFile,BufRead /mnt/* set synmaxcol=200
+augroup END

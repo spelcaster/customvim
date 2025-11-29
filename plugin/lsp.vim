@@ -1,6 +1,8 @@
 " Enable vim-lsp logging for debugging (optional)
 let g:lsp_log_file = expand('~/.vim/log/vim-lsp.log')
 let g:lsp_log_verbose = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_document_code_action_signs_enabled = 1
 
 " Configure PHPactor as the LSP server for PHP files
 augroup lsp_php
@@ -29,7 +31,7 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
-    let g:lsp_format_sync_timeout = 1000
+    let g:lsp_format_sync_timeout = 2000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
 
     " refer to doc to add more commands
